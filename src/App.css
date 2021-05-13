@@ -1,0 +1,11 @@
+body {
+  background-color: lightskyblue;
+}
+.cardContainer {
+  display: grid;
+  grid-template-columns: 1fr 6fr 1fr;
+  grid-template-areas: '. card .';
+}
+.card {
+  grid-area: card;
+}
