@@ -15,19 +15,19 @@ function App() {
   };
   const tweets = useState([]);
 
-  useEffect(() => {
-    const fetchTweets = async () => {
-      let response = await Axios.get(
-        `https://api.twitter.com/2/tweets/1392679066528931847?expansions=attachments.media_keys,author_id`,
-        config,
-        function (req, res) {
-          res.header('Access-Control-Allow-Origin', '*');
-        }
-      );
-      console.log(response);
-    };
-    fetchTweets();
-  }, []);
+  // useEffect(() => {
+  //   const fetchTweets = async () => {
+  //     let response = await Axios.get(
+  //       `https://api.twitter.com/2/tweets/1392679066528931847?expansions=attachments.media_keys,author_id`,
+  //       config,
+  //       function (req, res) {
+  //         res.header('Access-Control-Allow-Origin', '*');
+  //       }
+  //     );
+  //     console.log(response);
+  //   };
+  //   fetchTweets();
+  // }, []);
 
   return (
     <div className='App'>
