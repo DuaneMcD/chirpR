@@ -4,6 +4,9 @@ import cors from 'cors';
 import path, { dirname } from 'path';
 import http from 'http';
 import { fileURLToPath } from 'url';
+import axios from 'axios';
+
+const testTweet = 'Imma make it Tweet! 🐔🦚';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -17,10 +20,20 @@ const config = {
   headers: { Authorization: `Bearer ${token}` },
 };
 
-app.get('/test', (req, res) => {
-  console.log('test complete!');
-  res.json({ answer: 'Test Complete' });
+app.get('/tweet', async (req, res) => {
+  const response = await axios.get(
+    `https://api.twitter.com/2/tweets/1392679066528931847?expansions=attachments.media_keys,author_id`,
+    config
+  );
+  res.send(response.data);
 });
+// app.get('/user/:id', async (req, res) => {
+//   const response = await axios.get(
+//     `https://api.twitter.com/2/users/:id`,
+//     config
+//   );
+//   res.send(response.data);
+// });
 
 app.use('/', express.static(path.join(__dirname, 'client/build')));
 app.listen(port);

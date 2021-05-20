@@ -1,48 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import Card from './components/card';
+import React from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import freedom from './images/freedom.gif';
-import birdGif from './images/birdGif.gif';
-import Axios from 'axios';
+import Home from './pages/home';
+import Search from './pages/search';
+import About from './pages/about';
 import './App.css';
 
-function App() {
-  const testTweet = 'Imma make it Tweet! 🐔🦚';
-  const token =
-    'AAAAAAAAAAAAAAAAAAAAAHwhPgEAAAAA1UgvX4LIPR7m2ornJszRmD4iJ3c%3DYzQIu3Henyxr7TcvlRfkKZ14ZzFOxd5LJ7C10nZfmFKdzBIBbg';
-  const config = {
-    headers: { Authorization: `Bearer ${token}` },
-  };
-  const tweets = useState([]);
-
-  // useEffect(() => {
-  //   const fetchTweets = async () => {
-  //     let response = await Axios.get(
-  //       `https://api.twitter.com/2/tweets/1392679066528931847?expansions=attachments.media_keys,author_id`,
-  //       config,
-  //       function (req, res) {
-  //         res.header('Access-Control-Allow-Origin', '*');
-  //       }
-  //     );
-  //     console.log(response);
-  //   };
-  //   fetchTweets();
-  // }, []);
-
+const App = () => {
   return (
     <div className='App'>
-      <Navbar />
-      <div className='cardContainer'>
-        <Card
-          className='card'
-          avatar={birdGif}
-          handle='bigTweetr'
-          tweet={testTweet}
-          media={freedom}
-        />
-      </div>
+      <Router>
+        <Navbar />
+        <Switch>
+          <Route path='/' exact component={Home} />
+          <Route path='/search' exact component={Search} />
+          <Route path='/about' exact component={About} />
+        </Switch>
+      </Router>
     </div>
   );
-}
+};
 
 export default App;
