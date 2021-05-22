@@ -27,12 +27,14 @@ app.get('/tweet', async (req, res) => {
   );
   res.send(response.data);
 });
+
 app.get('/users/:id', async (req, res) => {
   const response = await axios.get(
     `https://api.twitter.com/2/users/by/username/${req.params.id}`,
     config
   );
-  res.send(response);
+  console.log(response.data);
+  res.json(response);
 });
 // app.get('/user/:id', async (req, res) => {
 //   const response = await axios.get(

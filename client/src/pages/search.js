@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Card from '../components/card';
 import './search.css';
 
@@ -17,7 +17,6 @@ const Search = () => {
     e.preventDefault();
     console.log(`Searched For:${searchInput}`);
     getUserId(searchInput);
-    console.log(searchUserID);
     // fetchUserTweets(searchUserID);
   };
 
@@ -35,7 +34,7 @@ const Search = () => {
     const message = await response.json();
     console.log(message);
     setTweetsArray(await message.data);
-    setIncludessArray(await message.data);
+    setIncludesArray(await message.data);
   };
 
   return (
