@@ -27,13 +27,23 @@ app.get('/tweet', async (req, res) => {
   );
   res.send(response.data);
 });
+app.get('/users/:id', async (req, res) => {
+  const response = await axios.get(
+    `https://api.twitter.com/2/users/by/username/${req.params.id}`,
+    config
+  );
+  res.send(response);
+});
 // app.get('/user/:id', async (req, res) => {
 //   const response = await axios.get(
-//     `https://api.twitter.com/2/users/:id`,
+//     `https://api.twitter.com/2/users/:id/tweets`,
 //     config
 //   );
-//   res.send(response.data);
+//   res.send(response.data.id);
 // });
 
 app.use('/', express.static(path.join(__dirname, 'client/build')));
+app.get('/*', function (req, res) {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 app.listen(port);

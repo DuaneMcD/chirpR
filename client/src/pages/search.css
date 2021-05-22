@@ -1,0 +1,16 @@
+.searchBar {
+  display: flex;
+  height: 6vh;
+  background-color: darkslateblue;
+}
+#search {
+  width: 40vw;
+  margin-left: auto;
+  margin-top: auto;
+}
+.searchBtn {
+  width: 8ch;
+  margin-top: auto;
+  margin-right: auto;
+  height: 23px;
+}
