@@ -28,21 +28,21 @@ app.get('/tweet', async (req, res) => {
   res.send(response.data);
 });
 
-app.get('/users/:id', async (req, res) => {
+app.get('/users/:username', async (req, res) => {
   const response = await axios.get(
-    `https://api.twitter.com/2/users/by/username/${req.params.id}`,
+    `https://api.twitter.com/2/users/by/username/${req.params.username}`,
     config
   );
-  console.log(response.data);
-  res.json(response);
+  res.json(response.data.data.id);
 });
-// app.get('/user/:id', async (req, res) => {
-//   const response = await axios.get(
-//     `https://api.twitter.com/2/users/:id/tweets`,
-//     config
-//   );
-//   res.send(response.data.id);
-// });
+
+app.get('/timeline/:id', async (req, res) => {
+  const response = await axios.get(
+    `https://api.twitter.com/2/users/${req.params.id}/tweets?expansions=attachments.media_keys,author_id&media.fields=preview_image_url,height,url&user.fields=profile_image_url`,
+    config
+  );
+  res.json(response.data);
+});
 
 app.use('/', express.static(path.join(__dirname, 'client/build')));
 app.get('/*', function (req, res) {

@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
-import Card from '../components/card';
+import React, { useState, useEffect } from 'react';
+import Timeline from '../components/Timeline';
 import './search.css';
 
 const Search = () => {
   const [searchInput, setSearchInput] = useState('');
-  const [searchUserID, setSearchUserID] = useState('');
-  const [tweetAuthor, setTweetAuthor] = useState([]);
+  const [tweetAuthor, setTweetAuthor] = useState('Funny Guy');
   const [authorId, setAuthorId] = useState([]);
   const [tweetBody, setTweetBody] = useState([]);
   const [userAvatar, setUserAvatar] = useState([]);
@@ -13,28 +12,31 @@ const Search = () => {
   const [tweetsArray, setTweetsArray] = useState([]);
   const [includesArray, setIncludesArray] = useState([]);
 
-  const handleSearch = e => {
+  const handleSearch = async e => {
     e.preventDefault();
     console.log(`Searched For:${searchInput}`);
-    getUserId(searchInput);
-    // fetchUserTweets(searchUserID);
+    let newID = await getUserId(searchInput);
+    await fetchUserTweets(newID);
   };
 
   const getUserId = async user => {
     const response = await fetch(`http://localhost:3000/users/${user}`);
     const message = await response.json();
-    console.log(message);
-    // setSearchUserID(await message);
+    return message;
   };
 
   const fetchUserTweets = async userId => {
-    const response = await fetch(
-      `https://api.twitter.com/2/users/${userId}/tweets?expansions=attachments.media_keys&media.fields=preview_image_url,height,url`
-    );
+    const response = await fetch(`http://localhost:3000/timeline/${userId}`);
     const message = await response.json();
-    console.log(message);
+    // console.log(message.data);
     setTweetsArray(await message.data);
-    setIncludesArray(await message.data);
+    setIncludesArray(await message.includes);
+    return message;
+  };
+
+  const handleTweetAuthor = () => {
+    // return tweetAuthor ? `@ ${tweetAuthor}` : ``;
+    return tweetAuthor;
   };
 
   return (
@@ -55,14 +57,16 @@ const Search = () => {
       </div>
 
       <div className='cardContainer'>
-        <Card
-          className='card'
-          tweetAuthor={tweetAuthor}
-          authorId={authorId}
-          tweetBody={tweetBody}
-          userAvatar={userAvatar}
-          tweetMedia={tweetMedia}
-        />
+        <img className='avatar' src={userAvatar} alt='' />
+        <p className='user'> {tweetAuthor} </p>
+        {tweetsArray.map(tweet => (
+          <Timeline
+            className='card'
+            tweetBody={tweet.text}
+            tweetMedia={tweetMedia}
+            mediaKey={tweet.attachments.media_keys}
+          />
+        ))}
       </div>
     </div>
   );
