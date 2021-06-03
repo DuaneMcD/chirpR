@@ -26,8 +26,9 @@
 }
 
 .nav-links {
-  font-size: 0.75em;
-  font-family: var(--theme-font-varela);
+  font-size: 1.25em;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+    'Lucida Sans', Arial, sans-serif;
   color: #fff;
   display: flex;
   text-decoration: none;
@@ -49,7 +50,8 @@
 
 .quill {
   display: block;
-  width: 90%;
+  height: 90%;
+  margin-block: auto;
 }
 
 /* 
