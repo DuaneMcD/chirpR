@@ -48,7 +48,8 @@
 }
 
 .quill {
-  width: 13vw;
+  display: block;
+  width: 90%;
 }
 
 /* 

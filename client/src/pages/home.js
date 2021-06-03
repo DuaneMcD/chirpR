@@ -1,38 +1,38 @@
 import React, { useState } from 'react';
+import Accordion from '../components/Accordion';
 import Card from '../components/card';
+import Navbar from '../components/Navbar';
 
 const Home = () => {
-  const [tweetAuthor, setTweetAuthor] = useState([]);
-  const [authorId, setAuthorId] = useState([]);
-  const [tweetBody, setTweetBody] = useState([]);
-  const [userAvatar, setUserAvatar] = useState([]);
-  const [tweetMedia, setTweetMedia] = useState([]);
-  const [searchTerm, setSearchTerm] = useState([]);
+  const [tweetsArray, setTweetsArray] = useState([]);
+  const [includesArray, setIncludesArray] = useState([]);
 
-  const btnTest = async () => {
-    const response = await fetch(`http://localhost:3000/tweet`);
+  const fetchUserTweets = async () => {
+    // const response = await fetch(`http://localhost:3000/timeline/${userId}`);
+    const response = await fetch(`http://localhost:3000/timeline/44196397`);
     const message = await response.json();
-    setTweetBody(await message.data.text);
-    setTweetAuthor(await message.includes.users[0].username);
-    setAuthorId(await message.data.author_id);
-    setTweetMedia(await message.includes.media);
+    setTweetsArray(await message.data);
+    setIncludesArray(await message.includes);
+    return message;
   };
 
   return (
-    <div>
-      <button onClick={btnTest}>Load A Tweet</button>
-      <div className='cardContainer'>
-        <Card
-          className='card'
-          tweetAuthor={tweetAuthor}
-          authorId={authorId}
-          tweetBody={tweetBody}
-          userAvatar={userAvatar}
-          tweetMedia={tweetMedia}
-          searchTerm={searchTerm}
-        />
+    <>
+      <Navbar />
+      <div>
+        <button onClick={fetchUserTweets}>@ElonMusk</button>
+        <div className='cardContainer'>
+          {tweetsArray.map(tweet => (
+            <Card
+              key={tweet.id}
+              className='card'
+              tweetBody={tweet.text}
+              MediaKey={tweet.attachments?.media_keys[0]}
+            />
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

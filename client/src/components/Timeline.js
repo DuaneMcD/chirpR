@@ -7,6 +7,7 @@ export const Timeline = props => {
       <div className='tweetContent'>
         <h2 className='tweetBody'> {props.tweetBody} </h2>
         <h3 className='mediaKey'> {props.mediaKey} </h3>
+        <h3 className='mediaURL'> {props.mediaURL} </h3>
         <div className='mediaContent'>
           <img src={props.tweetMedia} alt='' />
         </div>
