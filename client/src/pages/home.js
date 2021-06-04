@@ -13,24 +13,24 @@ const Home = () => {
     const message = await response.json();
     setTweetsArray(await message.data);
     setIncludesArray(await message.includes);
-    return message;
   };
 
   return (
     <>
       <Navbar />
-      <div>
-        <button onClick={fetchUserTweets}>@ElonMusk</button>
-        <div className='cardContainer'>
-          {tweetsArray.map(tweet => (
-            <Card
-              key={tweet.id}
-              className='card'
-              tweetBody={tweet.text}
-              MediaKey={tweet.attachments?.media_keys[0]}
-            />
-          ))}
-        </div>
+      <div className='cardContainer'>
+        {tweetsArray.map((tweet, index) => (
+          <Accordion
+            className='accordion'
+            username='ElonMusk'
+            index={index}
+            key={tweet.id}
+            tweet={tweet.text}
+            MediaKey={tweet.attachments?.media_keys[0]}
+            onClick={fetchUserTweets}>
+            <h2>Elon Musk</h2>
+          </Accordion>
+        ))}
       </div>
     </>
   );
