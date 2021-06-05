@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Card from '../components/card';
 
 const Accordion = props => {
   const [clicked, setClicked] = useState(false);
@@ -19,9 +18,9 @@ const Accordion = props => {
       </div>
       {clicked === props.index ? (
         <div className='dropdown'>
-          {props.tweet.map(tweet => (
+          {/* {props.tweet.map(tweet => (
             <p>tweet</p>
-          ))}
+          ))} */}
         </div>
       ) : null}
     </div>

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import Accordion from '../components/Accordion';
-import Card from '../components/card';
 import Navbar from '../components/Navbar';
+import Accordion from '../components/Accordion';
 
 const Home = () => {
   const [tweetsArray, setTweetsArray] = useState([]);
@@ -14,23 +13,22 @@ const Home = () => {
     setTweetsArray(await message.data);
     setIncludesArray(await message.includes);
   };
+  // component
 
   return (
     <>
       <Navbar />
-      <div className='cardContainer'>
-        {tweetsArray.map((tweet, index) => (
-          <Accordion
-            className='accordion'
-            username='ElonMusk'
-            index={index}
-            key={tweet.id}
-            tweet={tweet.text}
-            MediaKey={tweet.attachments?.media_keys[0]}
-            onClick={fetchUserTweets}>
-            <h2>Elon Musk</h2>
-          </Accordion>
-        ))}
+      ELON
+      <div className='accordion' onClick={fetchUserTweets}>
+        <Accordion
+          className='accordion'
+          username='ElonMusk'
+          index={1}
+          key={tweetsArray.id}
+          tweet={tweetsArray.text}
+          MediaKey={tweetsArray.attachments?.media_keys[0]}
+          onClick={fetchUserTweets}
+        />
       </div>
     </>
   );
