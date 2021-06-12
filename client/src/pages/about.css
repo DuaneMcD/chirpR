@@ -1,18 +1,18 @@
 :root {
   --typewriterSpeed: 5s;
 }
-body {
+.aboutPage {
   display: grid;
   place-content: center;
   text-align: center;
   font-family: monospace;
 }
-h1 {
+.aboutH1 {
   font-size: clamp(1rem, 3vw+1rem, 4rem);
   position: relative;
 }
-h1::before,
-h1::after {
+.aboutH1::before,
+.aboutH1::after {
   content: '';
   position: absolute;
   top: 0;
@@ -20,12 +20,11 @@ h1::after {
   bottom: 0;
   left: 0;
 }
-
-h1::before {
+.aboutH1::before {
   background-color: lightskyblue;
   animation: typewriter var(--typewriterSpeed) steps(32) 1.2s forwards;
 }
-h1::after {
+.aboutH1::after {
   width: 0.2em;
   background: black;
   animation: typewriter var(--typewriterSpeed) steps(32) 1.2s forwards,
@@ -51,6 +50,15 @@ ul {
   transform: translateY(3rem);
   animation: fadeIn 2.75s ease calc(var(--typewriterSpeed) + 1s) forwards;
 }
+.aboutPage > h1 {
+  font-size: 2.25rem;
+}
+.aboutPage > h2 {
+  font-size: 0.85rem;
+  margin-top: 0.75em;
+  width: 50ch;
+  margin-inline: auto;
+}
 .aboutDuane {
   display: grid;
   place-content: center;
@@ -58,15 +66,27 @@ ul {
   transform: translateY(3rem);
   animation: fadeIn 4s ease calc(var(--typewriterSpeed) + 2s) forwards;
 }
+.aboutDuane > h2 {
+  margin-top: 1.5em;
+}
+.aboutDuane > h3 {
+  margin-top: 0;
+}
 .duaneImg {
   height: 20vh;
   margin-inline: auto;
   border-radius: 400px;
 }
+.aboutDuane > a {
+  color: darkslategray;
+  text-decoration: none;
+}
+.aboutDuane > a:hover {
+  color: white;
+}
 .return {
   display: grid;
   place-content: center;
-  margin-top: 6vh;
   opacity: 0;
   transform: translateY(7rem);
   animation: fadeUp 3.5s ease calc(var(--typewriterSpeed) + 4s) forwards;
@@ -75,8 +95,15 @@ ul {
   color: white;
   cursor: pointer;
 }
+.returnLink {
+  color: black;
+  text-decoration: none;
+}
+.returnLink:hover {
+  color: white;
+}
 .quill {
-  height: 5vh;
+  height: 9vh;
   margin-bottom: 0;
 }
 .quill:hover {

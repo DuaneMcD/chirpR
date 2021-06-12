@@ -6,8 +6,12 @@ import './about.css';
 
 const about = () => {
   return (
-    <>
-      <h1>Chirpr | built by Duane McDonald</h1>
+    <div className='aboutPage'>
+      <h1 className='aboutH1'>Chirpr | Built by Duane McDonald</h1>
+      <h2>
+        Chirpr is an app experimenting with the Twitter Standard API 2. Chirpr
+        uses realtime tweets & streams from twitter users.
+      </h2>
       <div className='about'>
         <div className='aboutApp'>
           <h2>Built with:</h2>
@@ -32,10 +36,12 @@ const about = () => {
         </div>
       </div>
       <div className='return'>
-        <img className='quill' src={logo} alt='Chirpr logo' />
-        <Link to='/home'>Return</Link>
+        <Link className='returnLink' to='/home'>
+          <img className='quill' src={logo} alt='Chirpr logo' />
+          Return
+        </Link>
       </div>
-    </>
+    </div>
   );
 };
 

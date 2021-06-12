@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
 import Accordion from '../components/Accordion';
+import { DatePicker } from 'antd';
 
 const Home = () => {
   const [tweetsArray, setTweetsArray] = useState([]);
@@ -13,22 +14,24 @@ const Home = () => {
     setTweetsArray(await message.data);
     setIncludesArray(await message.includes);
   };
-  // component
 
   return (
     <>
       <Navbar />
       ELON
       <div className='accordion' onClick={fetchUserTweets}>
-        <Accordion
-          className='accordion'
-          username='ElonMusk'
-          index={1}
-          key={tweetsArray.id}
-          tweet={tweetsArray.text}
-          MediaKey={tweetsArray.attachments?.media_keys[0]}
-          onClick={fetchUserTweets}
-        />
+        <DatePicker />
+        {tweetsArray.map(tweet => (
+          <Accordion
+            className='accordion'
+            username='ElonMusk'
+            index={1}
+            key={tweet.id}
+            tweet={tweet.text}
+            MediaKey={tweet.attachments?.media_keys[0]}
+            onClick={fetchUserTweets}
+          />
+        ))}
       </div>
     </>
   );

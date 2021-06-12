@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
-import Timeline from '../components/Timeline';
+import { Card } from 'antd';
+import {
+  EditOutlined,
+  EllipsisOutlined,
+  SettingOutlined,
+} from '@ant-design/icons';
+import _ from 'lodash';
 import './search.css';
 
 const Search = () => {
@@ -12,6 +18,7 @@ const Search = () => {
   const [tweetMedia, setTweetMedia] = useState([]);
   const [tweetsArray, setTweetsArray] = useState([]);
   const [includesArray, setIncludesArray] = useState([]);
+  const { Meta } = Card;
 
   const handleSearch = async e => {
     e.preventDefault();
@@ -36,11 +43,6 @@ const Search = () => {
     return message;
   };
 
-  const handleMediaKey = key => {
-    let mediaObj = includesArray.media.find(key);
-    console.log(mediaObj);
-  };
-
   return (
     <>
       <Navbar />
@@ -63,15 +65,21 @@ const Search = () => {
         <div className='cardContainer'>
           <img className='avatar' src={userAvatar} alt='' />
           <p className='user'> {tweetAuthor} </p>
+
           {tweetsArray.map(tweet => (
-            <Timeline
+            <Card
               key={tweet.id}
               className='card'
-              tweetBody={tweet.text}
-              tweetMedia={tweetMedia}
-              MediaKey={tweet.attachments?.media_keys[0]}
-              // MediaURL={handleMediaKey(tweet.attachments?.media_keys[0])}
-            />
+              style={{ width: 300 }}
+              cover={<img alt='example' src='' />}
+              hoverable
+              actions={[
+                <SettingOutlined key='setting' />,
+                <EditOutlined key='edit' />,
+                <EllipsisOutlined key='ellipsis' />,
+              ]}>
+              <Meta title='Card title' description={tweet.text} />
+            </Card>
           ))}
         </div>
       </div>
