@@ -25,7 +25,6 @@ const Search = () => {
     console.log(`Searched For:${searchInput}`);
     let newID = await getUserId(searchInput);
     await fetchUserTweets(newID);
-    // handleMediaKey();
   };
 
   const getUserId = async user => {
@@ -39,7 +38,7 @@ const Search = () => {
     const message = await response.json();
     // console.log(message.data);
     setTweetsArray(await message.data);
-    setIncludesArray(await message.includes);
+    setIncludesArray(await message.includes.users);
     return message;
   };
 
@@ -64,23 +63,28 @@ const Search = () => {
 
         <div className='cardContainer'>
           <img className='avatar' src={userAvatar} alt='' />
-          <p className='user'> {tweetAuthor} </p>
+          <p className='user'> {`Searching for ${searchInput}`}</p>
 
-          {tweetsArray.map(tweet => (
-            <Card
-              key={tweet.id}
-              className='card'
-              style={{ width: 300 }}
-              cover={<img alt='example' src='' />}
-              hoverable
-              actions={[
-                <SettingOutlined key='setting' />,
-                <EditOutlined key='edit' />,
-                <EllipsisOutlined key='ellipsis' />,
-              ]}>
-              <Meta title='Card title' description={tweet.text} />
-            </Card>
-          ))}
+          {tweetsArray.map((tweet, index) => {
+            let user = includesArray[index]?.username;
+            let avatar = includesArray[index]?.profile_image_url;
+            // let preview = includesArray[index]?. ;
+            return (
+              <Card
+                key={tweet.id}
+                className='card'
+                style={{ width: 300 }}
+                cover={<img alt='User' src={avatar} />}
+                hoverable
+                actions={[
+                  <SettingOutlined key='setting' />,
+                  <EditOutlined key='edit' />,
+                  <EllipsisOutlined key='ellipsis' />,
+                ]}>
+                <Meta title={`@${user}`} description={tweet.text} />
+              </Card>
+            );
+          })}
         </div>
       </div>
     </>
