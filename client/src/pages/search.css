@@ -14,3 +14,22 @@
   margin-right: auto;
   height: 23px;
 }
+.searchResults {
+  display: grid;
+  gap: 0.5em;
+  place-content: center;
+}
+.card {
+  display: flex;
+  flex-direction: row;
+  border-radius: 0.1em;
+  transition: box-shadow 0.2s ease-in-out, transform 0.1s ease-in-out;
+}
+.card:hover {
+  box-shadow: 3px 3px 3px 1px rgba(83, 83, 180, 0.4);
+  transform: scale(1.16);
+  border: black 0.05em solid;
+}
+.buttons {
+  margin-top: 2em;
+}

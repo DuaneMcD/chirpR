@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
-import { Card } from 'antd';
+import { Input, Card } from 'antd';
 import {
   EditOutlined,
   EllipsisOutlined,
@@ -18,7 +18,10 @@ const Search = () => {
   const [tweetMedia, setTweetMedia] = useState([]);
   const [tweetsArray, setTweetsArray] = useState([]);
   const [includesArray, setIncludesArray] = useState([]);
+  const { Search } = Input;
   const { Meta } = Card;
+
+  const onSearch = value => console.log(value);
 
   const handleSearch = async e => {
     e.preventDefault();
@@ -46,6 +49,11 @@ const Search = () => {
     <>
       <Navbar />
       <div className='searchPage'>
+        <Search
+          placeholder='input search text'
+          onSearch={onSearch}
+          enterButton
+        />
         <div className='searchBar'>
           <form onSubmit={handleSearch}>
             <input
@@ -70,19 +78,21 @@ const Search = () => {
             let avatar = includesArray[index]?.profile_image_url;
             // let preview = includesArray[index]?. ;
             return (
-              <Card
-                key={tweet.id}
-                className='card'
-                style={{ width: 300 }}
-                cover={<img alt='User' src={avatar} />}
-                hoverable
-                actions={[
-                  <SettingOutlined key='setting' />,
-                  <EditOutlined key='edit' />,
-                  <EllipsisOutlined key='ellipsis' />,
-                ]}>
-                <Meta title={`@${user}`} description={tweet.text} />
-              </Card>
+              <div className='searchResults'>
+                <Card
+                  hoverable
+                  key={tweet.id}
+                  className='card'
+                  style={{ backgroundColor: 'white', width: 300 }}
+                  cover={<img alt='User' src={avatar} />}>
+                  <div className='buttons'>
+                    <Meta title={`@${user}`} description={tweet.text} />
+                    <SettingOutlined key='setting' />
+                    <EditOutlined key='edit' />
+                    <EllipsisOutlined key='ellipsis' />
+                  </div>
+                </Card>
+              </div>
             );
           })}
         </div>
