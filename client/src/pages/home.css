@@ -1,4 +1,42 @@
-.searchContainer {
+.homePage {
+  display: grid;
+  place-content: center;
+}
+.content-box {
+  width: 40vw;
+}
+.accordion-btn {
+  display: flex;
+  flex-direction: row;
+  font-size: 1.66em;
+  font-weight: bold;
+  color: black;
+  background-color: whitesmoke;
+  width: 100%;
+  padding: 4px;
+  margin: 0.25em 0 0.15em 0;
+  text-align: left;
+  cursor: pointer;
+}
+.accordion-btn:hover {
+  color: rgb(16, 143, 194);
+  background-color: lightsteelblue;
+}
+.caret {
+  margin-left: auto;
+}
+.caret-rotate {
+  rotate: 90;
+  margin-left: auto;
+}
+.accordion-content {
+  display: inherit;
+  font-size: 1.2em;
+  background-color: cornsilk;
+  padding: 5px;
+}
+
+/* .searchContainer {
   display: grid;
   place-content: center;
   margin: 10px;
@@ -48,4 +86,4 @@
 }
 .ellipsis:hover {
   color: rgb(0, 117, 250);
-}
+} */

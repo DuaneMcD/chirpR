@@ -1,11 +1,29 @@
 body {
   background-color: lightskyblue;
+  margin: 0;
 }
-/* .cardContainer {
-  display: grid;
-  grid-template-columns: 1fr 6fr 1fr;
-  grid-template-areas: '. card .'; */
-/* } */
-.card {
-  grid-area: card;
+* {
+  box-sizing: border-box;
+  scrollbar-color: var(--theme-blue) black;
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 4px;
+}
+
+*::-webkit-scrollbar-track {
+  background: black;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--theme-blue);
+  border-radius: 2.5px;
+  border: 0px solid white;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
