@@ -31,14 +31,18 @@
   margin-left: auto;
 }
 .caret-rotate {
-  rotate: 90;
+  transform: rotate(180deg);
   margin-left: auto;
 }
 .accordion-content {
   display: inherit;
   font-size: 1.2em;
-  background-color: cornsilk;
+  background-color: rgb(253, 251, 244);
   padding: 5px;
+}
+.accordion-tweets {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  margin-bottom: 1.15em;
 }
 
 /* .searchContainer {
