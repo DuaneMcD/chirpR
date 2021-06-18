@@ -4,17 +4,29 @@ import Home from './pages/home';
 import Search from './pages/search';
 import About from './pages/about';
 import Welcome from './pages/welcome';
+import Navbar from './components/Navbar';
 import './App.css';
 
 const App = () => {
   return (
     <div className='App'>
       <Router>
+        <Navbar />
         <Switch>
-          <Route path='/' exact component={Welcome} />
-          <Route path='/home' exact component={Home} />
-          <Route path='/search' exact component={Search} />
-          <Route path='/about' exact component={About} />
+          <Route className='page-content' path='/' exact component={Welcome} />
+          <Route className='page-content' path='/home' exact component={Home} />
+          <Route
+            className='page-content'
+            path='/search'
+            exact
+            component={Search}
+          />
+          <Route
+            className='page-content'
+            path='/about'
+            exact
+            component={About}
+          />
         </Switch>
       </Router>
     </div>

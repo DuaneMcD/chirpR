@@ -1,5 +1,5 @@
 body {
-  background-color: lightskyblue;
+  background: rgb(0, 32, 50);
   margin: 0;
 }
 * {
@@ -26,4 +26,11 @@ body {
 *::before,
 *::after {
   box-sizing: border-box;
+}
+.App {
+  display: flex;
+}
+.searchPage,
+.homePage {
+  margin: 15vh auto 0 auto;
 }

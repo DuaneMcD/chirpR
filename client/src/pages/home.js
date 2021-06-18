@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import Navbar from '../components/Navbar';
 import Accordion from '../components/Accordion';
 import './home.css';
 
 const Home = () => {
   const [favoriteIDs, setFavoriteIDs] = useState([
-    { user: ' elonmusk', id: 44196397 },
+    { user: 'elonmusk', id: 44196397 },
     { user: 'theellenshow', id: 15846407 },
     { user: 'taylorswift13', id: 17919972 },
   ]);
@@ -30,10 +29,9 @@ const Home = () => {
 
   return (
     <>
-      <Navbar />
       <div className='homePage'>
         <div className='content-box'>
-          <h1>Popular Twitter Streams:</h1>
+          <h1 className='popular-streams'>Popular Twitter Streams:</h1>
           {tweetsArray.map((tweet, index) => (
             <Accordion
               title={`@${favoriteIDs[index]?.user}`}

@@ -1,14 +1,14 @@
-.homePage {
-  display: grid;
-  place-content: center;
-}
 .row1 {
   display: flex;
   flex-direction: row;
   gap: 2em;
 }
 .content-box {
+  color: white;
+  font-family: 'Trebuchet MS';
+  text-decoration: none;
   width: 40vw;
+  margin-bottom: 5em;
 }
 .accordion-btn {
   display: flex;
@@ -37,6 +37,7 @@
 .accordion-content {
   display: inherit;
   font-size: 1.2em;
+  color: black;
   background-color: rgb(253, 251, 244);
   padding: 5px;
 }

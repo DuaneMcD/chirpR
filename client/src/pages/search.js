@@ -39,7 +39,7 @@ const Search = () => {
 
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <div className='searchPage'>
         <div className='searchContainer'>
           <Search

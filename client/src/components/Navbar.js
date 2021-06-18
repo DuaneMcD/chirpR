@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import logo from '../images/quill.png';
+import {
+  HomeOutlined,
+  SearchOutlined,
+  InfoCircleOutlined,
+} from '@ant-design/icons';
 import './Navbar.css';
 
 export function Navbar() {
@@ -10,34 +15,34 @@ export function Navbar() {
 
   return (
     <>
-      <div className='nav-frame'>
-        <div className='sidebar'>
+      <div className='sidebar'>
+        <NavLink to='/home'>
           <img
             className='quill-logo'
             onClick={handleClick}
             src={logo}
             alt='Chirpr logo'
           />
-          <ul className={click ? 'nav-menu active' : 'nav-menu'}>
-            <li className='nav-item'>
-              <Link to='/home' className='nav-links'>
-                Chirpr
-              </Link>
-            </li>
-            <li className='nav-item'>
-              <Link to='/search' className='nav-links'>
-                Search
-              </Link>
-            </li>
-            <li className='nav-item'>
-              <Link to='/about' className='nav-links'>
-                About
-              </Link>
-            </li>
-          </ul>
+        </NavLink>
+        <div className={click ? 'nav-menu active' : 'nav-menu'}>
+          <NavLink to='/home' activeClassName='is-active' className='nav-links'>
+            <HomeOutlined />
+          </NavLink>
+          <NavLink
+            to='/search'
+            activeClassName='is-active'
+            className='nav-links'>
+            <SearchOutlined />
+          </NavLink>
+          <NavLink
+            to='/about'
+            activeClassName='is-active'
+            className='nav-links'>
+            <InfoCircleOutlined />
+          </NavLink>
         </div>
-        <nav className='navbar'></nav>
       </div>
+      <nav className='topbar'></nav>
     </>
   );
 }

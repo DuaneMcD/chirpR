@@ -1,65 +1,46 @@
-.nav-frame {
-  display: grid;
-  grid-template-areas:
-    'sidebar navbar '
-    'sidebar content ';
+.quill-logo {
+  padding: 0;
+  display: block;
+  height: 14vh;
+  margin-inline: auto;
+  margin-block: 0.5em;
 }
-.navbar {
-  display: flex;
-  grid-area: 'navbar';
-  color: white;
+.topbar {
   background: rgb(0, 32, 50);
-  height: 12vh;
-  width: 82vw;
-  margin-right: auto;
-  position: sticky;
+  height: 15vh;
+  width: 100vw;
+  position: absolute;
   top: 0;
-  z-index: 999;
 }
 .sidebar {
-  grid-area: 'sidebar';
   width: 18vw;
-  height: 100vh;
-  position: sticky;
-  top: 0;
+  height: 101vh;
   background: rgb(0, 32, 50);
+  z-index: 50;
+  border-right: 0.005em solid rgb(80, 80, 90);
 }
 .nav-menu {
   display: flex;
   flex-direction: column;
   gap: 5em;
+  margin-top: 3em;
   list-style: none;
-  /* text-align: center; */
-  /* width: 100%; */
-  /* margin: 0 auto 0 auto; */
-}
-.quill-logo {
-  padding: 0;
-  display: block;
-  height: 15vh;
-  margin: auto;
-  transform: rotate(17deg);
-}
-.nav-item {
-  /* display: flex;
-  align-items: flex-end;
-  width: 100%; */
 }
 .nav-links {
-  font-size: 1.5em;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
-    'Lucida Sans', Arial, sans-serif;
-  color: #fff;
   display: flex;
+  font-size: 2em;
+  font-family: 'Trebuchet MS';
+  color: white;
   text-decoration: none;
-  padding: 0;
+  margin-inline: auto;
 }
 .nav-links:hover {
+  color: skyblue;
   border-bottom: 4px solid #fff;
   transition: all 0.2s ease-out;
 }
-.nav-links:active {
-  color: red;
+.is-active {
+  color: skyblue;
   border-bottom: 4px solid #fff;
   transition: all 0.2s ease-out;
 }

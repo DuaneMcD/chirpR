@@ -1,3 +1,6 @@
+.searchPage {
+  margin: 15vh auto 0 auto;
+}
 .searchContainer {
   display: grid;
   place-content: center;
