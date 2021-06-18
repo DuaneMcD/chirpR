@@ -31,6 +31,9 @@ body {
   display: flex;
 }
 .searchPage,
-.homePage {
+.homePage,
+.aboutPage {
   margin: 15vh auto 0 auto;
+  overflow-y: scroll;
+  overflow: hidden;
 }

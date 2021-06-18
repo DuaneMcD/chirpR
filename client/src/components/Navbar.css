@@ -5,16 +5,23 @@
   margin-inline: auto;
   margin-block: 0.5em;
 }
+.quill-logo:hover {
+  opacity: 0.5;
+}
 .topbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: rgb(0, 32, 50);
   height: 15vh;
   width: 100vw;
-  position: absolute;
+  position: fixed;
   top: 0;
 }
 .sidebar {
+  position: fixed;
+  height: 100vh;
   width: 18vw;
-  height: 101vh;
   background: rgb(0, 32, 50);
   z-index: 50;
   border-right: 0.005em solid rgb(80, 80, 90);
@@ -29,9 +36,7 @@
 .nav-links {
   display: flex;
   font-size: 2em;
-  font-family: 'Trebuchet MS';
   color: white;
-  text-decoration: none;
   margin-inline: auto;
 }
 .nav-links:hover {

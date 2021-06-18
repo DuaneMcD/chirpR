@@ -6,11 +6,12 @@ import {
   SearchOutlined,
   InfoCircleOutlined,
 } from '@ant-design/icons';
+import { Input } from 'antd';
 import './Navbar.css';
 
 export function Navbar() {
   const [click, setClick] = useState(false);
-
+  const { Search } = Input;
   const handleClick = () => setClick(!click);
 
   return (
@@ -42,7 +43,16 @@ export function Navbar() {
           </NavLink>
         </div>
       </div>
-      <nav className='topbar'></nav>
+      <nav className='topbar'>
+        <Search
+          className='antSearchBar'
+          placeholder='input search text'
+          // onSearch={handleSearch}
+          // onChange={e => setSearchInput(e.target.value)}
+          enterButton
+          size='large'
+        />
+      </nav>
     </>
   );
 }

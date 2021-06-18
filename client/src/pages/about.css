@@ -2,10 +2,12 @@
   --typewriterSpeed: 5s;
 }
 .aboutPage {
+  width: 100%;
   display: grid;
   place-content: center;
   text-align: center;
-  font-family: monospace;
+  color: white;
+  font-family: 'Trebuchet MS';
 }
 .aboutH1 {
   font-size: clamp(1rem, 3vw+1rem, 4rem);
@@ -21,12 +23,12 @@
   left: 0;
 }
 .aboutH1::before {
-  background-color: lightskyblue;
+  background-color: rgb(0, 32, 50);
   animation: typewriter var(--typewriterSpeed) steps(32) 1.2s forwards;
 }
 .aboutH1::after {
   width: 0.2em;
-  background: black;
+  background: lightsteelblue;
   animation: typewriter var(--typewriterSpeed) steps(32) 1.2s forwards,
     blink 1200ms steps(32) infinite;
 }
@@ -56,8 +58,11 @@ ul {
 .aboutPage > h2 {
   font-size: 0.85rem;
   margin-top: 0.75em;
-  width: 50ch;
+  width: 56ch;
   margin-inline: auto;
+  opacity: 0;
+  transform: translateY(3rem);
+  animation: fadeIn 2.75s ease calc(var(--typewriterSpeed) + 1s) forwards;
 }
 .aboutDuane {
   display: grid;
@@ -78,11 +83,11 @@ ul {
   border-radius: 400px;
 }
 .aboutDuane > a {
-  color: darkslategray;
+  color: ghostwhite;
   text-decoration: none;
 }
 .aboutDuane > a:hover {
-  color: white;
+  color: skyblue;
 }
 .return {
   display: grid;

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Navbar from '../components/Navbar';
 import { Input, Card } from 'antd';
 import {
   EditOutlined,
@@ -39,7 +38,6 @@ const Search = () => {
 
   return (
     <>
-      {/* <Navbar /> */}
       <div className='searchPage'>
         <div className='searchContainer'>
           <Search

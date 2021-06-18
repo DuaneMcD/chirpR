@@ -35,12 +35,6 @@ const about = () => {
           <a href='www.linkedin.com/in/duane-mcd'>LinkedIn</a>
         </div>
       </div>
-      <div className='return'>
-        <Link className='returnLink' to='/home'>
-          <img className='quill' src={logo} alt='Chirpr logo' />
-          Return
-        </Link>
-      </div>
     </div>
   );
 };
