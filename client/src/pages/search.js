@@ -14,7 +14,6 @@ const Search = () => {
   const [includesArray, setIncludesArray] = useState([]);
   const [userInfo, setUserInfo] = useState([]);
   const { Search } = Input;
-  const { Meta } = Card;
 
   const handleSearch = async e => {
     console.log(`Searched For:${searchInput}`);

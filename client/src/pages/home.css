@@ -1,14 +1,18 @@
-.row1 {
-  display: flex;
-  flex-direction: row;
-  gap: 2em;
-}
-.content-box {
+.popular-streams {
   color: white;
   font-family: 'Trebuchet MS';
   text-decoration: none;
-  width: 40vw;
-  margin-bottom: 5em;
+}
+.homeContainer {
+  display: flex;
+  flex-direction: row;
+  /* flex-wrap: wrap; */
+  margin: 2em 6em 5em 18em;
+  gap: 1.25em;
+  z-index: 1;
+}
+.accordion {
+  width: 27vw;
 }
 .accordion-btn {
   display: flex;
@@ -35,65 +39,12 @@
   margin-left: auto;
 }
 .accordion-content {
-  display: inherit;
   font-size: 1.2em;
   color: black;
   background-color: rgb(253, 251, 244);
   padding: 5px;
 }
 .accordion-tweets {
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: 'Trebuchet MS';
   margin-bottom: 1.15em;
 }
-
-/* .searchContainer {
-  display: grid;
-  place-content: center;
-  margin: 10px;
-}
-.cardContainer {
-  display: grid;
-  gap: 0.5em;
-  place-content: center;
-}
-.card {
-  grid-area: card;
-  display: flex;
-  flex-direction: row;
-  border-radius: 0.1em;
-  padding: 1em;
-  background-color: white;
-  width: 50vw;
-  transition: box-shadow 0.2s ease-in-out, transform 0.1s ease-in-out;
-}
-.card:hover {
-  box-shadow: 3px 3px 3px 1px rgba(83, 83, 180, 0.4);
-  transform: scale(1.16);
-  border: black 0.05em solid;
-}
-.ant-card-body {
-  margin-left: 0.75em;
-}
-.ant-card-meta-title {
-  font-weight: bold;
-  margin-bottom: 0.35em;
-}
-.buttons {
-  margin-block: 0.7em;
-  display: flex;
-}
-.setting:hover {
-  color: rgb(0, 117, 250);
-}
-.edit {
-  margin-left: auto;
-}
-.edit:hover {
-  color: rgb(0, 117, 250);
-}
-.ellipsis {
-  margin-inline: auto;
-}
-.ellipsis:hover {
-  color: rgb(0, 117, 250);
-} */

@@ -7,20 +7,29 @@ const Home = () => {
     { user: 'elonmusk', id: 44196397 },
     { user: 'theellenshow', id: 15846407 },
     { user: 'taylorswift13', id: 17919972 },
+    { user: 'elonmusk', id: 44196397 },
+    { user: 'theellenshow', id: 15846407 },
+    { user: 'taylorswift13', id: 17919972 },
   ]);
   const [tweetsArray, setTweetsArray] = useState([]);
   const [includesArray, setIncludesArray] = useState([]);
   const tweets = [];
+  let user = [];
 
   const fetchUserTweets = async () => {
     favoriteIDs.map(async user => {
       const response = await fetch(`http://localhost:3000/timeline/${user.id}`);
-      // const response = await fetch(`http://localhost:3000/timeline/44196397`);
       const message = await response.json();
       tweets.push(await message.data);
       setTweetsArray(tweets);
       setIncludesArray(await message.includes);
     });
+  };
+
+  const getUserInfo = async id => {
+    const response = await fetch(`http://localhost:3000/idlookup/${id}`);
+    const message = await response.json();
+    return message.data.name;
   };
 
   useEffect(() => {
@@ -30,14 +39,15 @@ const Home = () => {
   return (
     <>
       <div className='homePage'>
-        <div className='content-box'>
-          <h1 className='popular-streams'>Popular Twitter Streams:</h1>
-          {tweetsArray.map((tweet, index) => (
-            <Accordion
-              title={`@${favoriteIDs[index]?.user}`}
-              userStream={tweet}
-            />
-          ))}
+        <div className='topbar'>
+          <h1 className='popular-streams'>Explore Trending Twitter Feeds</h1>
+        </div>
+        <div className='homeContainer'>
+          {tweetsArray.map(async (tweet, index) => {
+            let handle = getUserInfo(tweet[0]?.author_id);
+
+            return <Accordion title={`@${await handle}`} userStream={tweet} />;
+          })}
         </div>
       </div>
     </>
