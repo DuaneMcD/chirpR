@@ -1,6 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import logo from '../images/quill.png';
 import Duane from '../images/duane.jpg';
 import './about.css';
 

@@ -4,14 +4,14 @@ import Home from './pages/home';
 import Search from './pages/search';
 import About from './pages/about';
 import Welcome from './pages/welcome';
-import Navbar from './components/Navbar';
+import Sidebar from './components/Sidebar';
 import './App.css';
 
 const App = () => {
   return (
     <div className='App'>
       <Router>
-        <Navbar />
+        <Sidebar />
         <Switch>
           <Route className='page-content' path='/' exact component={Welcome} />
           <Route className='page-content' path='/home' exact component={Home} />

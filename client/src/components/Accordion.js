@@ -12,6 +12,11 @@ const Accordion = props => {
     setCaret(active ? 'caret-rotate' : 'caret');
   };
 
+  const handleTimeStamp = dateString => {
+    let timestamp = new Date(dateString);
+    return timestamp.toDateString();
+  };
+
   return (
     <>
       <div className='accordion'>
@@ -24,14 +29,9 @@ const Accordion = props => {
         <div style={{ display: `${display}` }} className='accordion-content'>
           {props.userStream?.map((tweet, index) => (
             <div className='single-tweet'>
-              <p className='time-stamp'>{`${new Date(
+              <p className='time-stamp'>{`${handleTimeStamp(
                 tweet.created_at
-              ).getMonth()}/${new Date(tweet.created_at).getDate()}/${new Date(
-                tweet.created_at
-              ).getFullYear()} 
-              ${new Date(tweet.created_at).getHours()}:${new Date(
-                tweet.created_at
-              ).getMinutes()}`}</p>
+              )}`}</p>
               <p className='accordion-tweets'>{tweet.text}</p>
             </div>
           ))}
