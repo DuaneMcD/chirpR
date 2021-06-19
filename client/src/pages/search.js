@@ -12,19 +12,21 @@ const Search = () => {
   const [searchInput, setSearchInput] = useState('');
   const [tweetsArray, setTweetsArray] = useState([]);
   const [includesArray, setIncludesArray] = useState([]);
+  const [userInfo, setUserInfo] = useState([]);
   const { Search } = Input;
   const { Meta } = Card;
 
   const handleSearch = async e => {
     console.log(`Searched For:${searchInput}`);
     let newID = await getUserId(searchInput);
+    await getUserInfo(newID);
     await fetchUserTweets(newID);
   };
 
   const getUserInfo = async id => {
     const response = await fetch(`http://localhost:3000/idlookup/${id}`);
     const message = await response.json();
-    return message.data;
+    setUserInfo(message.data);
   };
 
   const getUserId = async user => {
@@ -67,10 +69,6 @@ const Search = () => {
             </div>
           ) : (
             tweetsArray.map((tweet, index) => {
-              let idLookup = getUserInfo(tweet.author_id);
-              let username = idLookup?.username;
-              let name = idLookup?.name;
-              let avatar = idLookup?.profile_image_url;
               return (
                 <>
                   <div className='stream-container'>
@@ -78,10 +76,15 @@ const Search = () => {
                       hoverable
                       key={tweet.id}
                       className='card'
-                      cover={<img alt='User' src={avatar} />}>
+                      cover={
+                        <img alt='User' src={userInfo.profile_image_url} />
+                      }>
                       <div className='tweetInfo'>
-                        <p className='name'>{name}</p> <br />
-                        <p className='username'>{' @' + username}</p> <br />
+                        <p className='name'>{userInfo.name}</p> <br />
+                        <p className='username'>
+                          {' @' + userInfo.username}
+                        </p>{' '}
+                        <br />
                         <p className='time-stamp'>{`▪ ${handleTimeStamp(
                           tweet.created_at
                         )}`}</p>
