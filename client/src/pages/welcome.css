@@ -15,3 +15,10 @@ button {
   color: navy;
   background-color: lightblue;
 }
+label {
+  font-size: 0.85em;
+  font-weight: bold;
+  display: inline-block;
+  width: 150px;
+  text-align: left;
+}

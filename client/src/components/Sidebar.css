@@ -33,13 +33,15 @@
 }
 .nav-links:hover {
   color: skyblue;
+  padding-bottom: 0.2em;
   border-bottom: 4px solid #fff;
-  transition: all 0.2s ease-out;
+  transition: all 0.4s ease-out;
 }
 .is-active {
   color: skyblue;
+  padding-bottom: 0.15em;
   border-bottom: 4px solid #fff;
-  transition: all 0.2s ease-out;
+  transition: all 0.4s ease-out;
 }
 .fa-bars {
   color: #fff;

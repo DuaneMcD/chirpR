@@ -29,7 +29,7 @@ const Home = () => {
   const getUserInfo = async id => {
     const response = await fetch(`http://localhost:3000/idlookup/${id}`);
     const message = await response.json();
-    return message.data.name;
+    return await message.data.name;
   };
 
   useEffect(() => {
@@ -43,11 +43,9 @@ const Home = () => {
           <h1 className='popular-streams'>Explore Trending Twitter Feeds</h1>
         </div>
         <div className='homeContainer'>
-          {tweetsArray.map(async (tweet, index) => {
-            let handle = getUserInfo(tweet[0]?.author_id);
-
-            return <Accordion title={`@${await handle}`} userStream={tweet} />;
-          })}
+          {tweetsArray.map((tweet, index) => (
+            <Accordion title={`@${tweet[0]?.author_id}`} userStream={tweet} />
+          ))}
         </div>
       </div>
     </>
