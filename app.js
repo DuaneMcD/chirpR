@@ -40,19 +40,7 @@ app.get('/puppet/', async (req, res) => {
   await scrapeWiki(
     'https://en.wikipedia.org/wiki/List_of_most-followed_Twitter_accounts'
   );
-  res.send(twitterHandles);
-});
-
-app.get('/idslist/', async (req, res) => {
-  await scrapeWiki(
-    'https://en.wikipedia.org/wiki/List_of_most-followed_Twitter_accounts'
-  );
-  let idsArray = () => [...twitterHandles];
-  const response = await axios.get(
-    `https://api.twitter.com/2/users?ids=${idsArray}`,
-    config
-  );
-  console.log(superArray);
+  res.json(twitterHandles);
 });
 
 app.get('/idlookup/:id', async (req, res) => {

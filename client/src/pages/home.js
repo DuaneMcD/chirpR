@@ -3,54 +3,52 @@ import Accordion from '../components/Accordion';
 import './home.css';
 
 const Home = () => {
-  const [favoriteIDs, setFavoriteIDs] = useState([
-    // { user: 'elonmusk', id: 44196397 },
-    // { user: 'theellenshow', id: 15846407 },
-    // { user: 'taylorswift13', id: 17919972 },
-    // { user: 'elonmusk', id: 44196397 },
-    // { user: 'theellenshow', id: 15846407 },
-    // { user: 'taylorswift13', id: 17919972 },
-  ]);
+  const [mostFollowedUsers, setMostFollowedUsers] = useState([]);
+  const [mostFollowedIDs, setMostFollowedIDs] = useState([]);
   const [tweetsArray, setTweetsArray] = useState([]);
   const [includesArray, setIncludesArray] = useState([]);
   const [usernameArray, setUsernameArray] = useState([]);
   const [testArray, setTestArray] = useState([]);
 
-  const getFavoriteIDs = async () => {
-    const favorites = await fetch(`http://localhost:3000/puppet/`);
-    const favArray = await favorites.json();
-    favArray.forEach(username => {});
-    return setFavoriteIDs(favArray);
+  const getFavoriteUsers = async () => {
+    const mostFollowedUsers = await fetch(`http://localhost:3000/puppet/`);
+    const favoriteUsersJson = await mostFollowedUsers.json();
+    return setMostFollowedUsers(favoriteUsersJson);
+  };
+
+  const getFavoriteIds = async () => {
+    const idNumbers = [];
+    for (let i = 0; i < mostFollowedUsers.length; i++) {
+      const idNumber = await fetch(
+        `http://localhost:3000/users/${mostFollowedUsers[i]}`
+      );
+      const idNumberJson = idNumber.json();
+      idNumbers.push(await idNumberJson);
+    }
+    console.log(idNumbers);
+    return setMostFollowedIDs(idNumbers);
   };
 
   useEffect(() => {
-    getFavoriteIDs();
+    getFavoriteUsers();
   }, []);
 
   useEffect(() => {
+    getFavoriteIds();
+  }, [mostFollowedUsers]);
+
+  useEffect(() => {
     fetchUserTweets();
-  }, [favoriteIDs]);
+  }, [mostFollowedIDs]);
 
   useEffect(() => {
     handleUserData();
   }, [tweetsArray]);
 
-  // const fetchUserTweets = async () => {
-  //   const tweets = [];
-  //   favoriteIDs.map(async user => {
-  //     const response = await fetch(`http://localhost:3000/timeline/${user.id}`);
-  //     const message = await response.json();
-  //     tweets.push(await message.data);
-  //     setTweetsArray(tweets);
-  //     setIncludesArray(await message.includes);
-  //   });
-  // };
-
   const fetchUserTweets = async () => {
     const tweets = [];
-    testArray.map(async user => {
-      const userid = await fetch(`http://localhost:3000/users/${user}`);
-      const response = await fetch(`http://localhost:3000/timeline/${userid}`);
+    mostFollowedIDs.map(async id => {
+      const response = await fetch(`http://localhost:3000/timeline/${id}`);
       const message = await response.json();
       tweets.push(await message.data);
       setTweetsArray(tweets);
