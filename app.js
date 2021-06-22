@@ -5,18 +5,55 @@ import path, { dirname } from 'path';
 import http from 'http';
 import { fileURLToPath } from 'url';
 import axios from 'axios';
+import puppeteer from 'puppeteer';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const app = express();
 app.use(cors());
 const port = 3000;
-
 const token =
   'AAAAAAAAAAAAAAAAAAAAAHwhPgEAAAAA1UgvX4LIPR7m2ornJszRmD4iJ3c%3DYzQIu3Henyxr7TcvlRfkKZ14ZzFOxd5LJ7C10nZfmFKdzBIBbg';
 const config = {
   headers: { Authorization: `Bearer ${token}` },
 };
+let twitterHandles = [];
+
+const scrapeWiki = async url => {
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+  await page.goto(url);
+
+  for (let i = 2; i < 12; i++) {
+    const [el] = await page.$x(
+      `//*[@id="mw-content-text"]/div[1]/table/tbody/tr[${i}]/td[2]/a`
+    );
+    const txt = await el.getProperty('text');
+    const rawTxt = await txt.jsonValue();
+    const noLeadingAt = await rawTxt.slice(1);
+    twitterHandles.push(noLeadingAt);
+  }
+  browser.close();
+};
+
+app.get('/puppet/', async (req, res) => {
+  await scrapeWiki(
+    'https://en.wikipedia.org/wiki/List_of_most-followed_Twitter_accounts'
+  );
+  res.send(twitterHandles);
+});
+
+app.get('/idslist/', async (req, res) => {
+  await scrapeWiki(
+    'https://en.wikipedia.org/wiki/List_of_most-followed_Twitter_accounts'
+  );
+  let idsArray = () => [...twitterHandles];
+  const response = await axios.get(
+    `https://api.twitter.com/2/users?ids=${idsArray}`,
+    config
+  );
+  console.log(superArray);
+});
 
 app.get('/idlookup/:id', async (req, res) => {
   const response = await axios.get(
