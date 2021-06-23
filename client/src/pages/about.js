@@ -8,8 +8,8 @@ const about = () => {
       <div className='about'>
         <h1 className='aboutH1'>Chirpr | Built by Duane McDonald</h1>
         <h2 className='aboutH2'>
-          Chirpr is an app experimenting with the Twitter Standard API 2. Chirpr
-          uses realtime tweets & streams from twitter users.
+          Chirpr is an app experimenting with the Twitter Standard API 2 and web
+          scraping. Chirpr uses realtime tweets & streams from twitter users.
         </h2>
         <section className='section2'>
           <div className='aboutApp'>

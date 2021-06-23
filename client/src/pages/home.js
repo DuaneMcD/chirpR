@@ -5,12 +5,12 @@ import { LoadingOutlined } from '@ant-design/icons';
 import './home.css';
 
 const Home = () => {
+  const [loading, setLoading] = useState(true);
   const [mostFollowedUsers, setMostFollowedUsers] = useState([]);
   const [mostFollowedIDs, setMostFollowedIDs] = useState([]);
   const [tweetsArray, setTweetsArray] = useState([]);
   const [includesArray, setIncludesArray] = useState([]);
   const [usernameArray, setUsernameArray] = useState([]);
-  const [loading, setLoading] = useState();
   const loadingIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 
   const getFavoriteUsers = async () => {
@@ -81,8 +81,14 @@ const Home = () => {
     <>
       <div className='homePage'>
         <div className='topbar'>
-          <h1 className='popular-streams'>Explore Trending Twitter Feeds ➡</h1>
+          <h1 className='popular-streams'>Explore Trending Twitter Feeds </h1>
         </div>
+        {loading ? (
+          <p className='loading-mini'>Loading...</p>
+        ) : (
+          <p className='moreUsers'>more users ➡</p>
+        )}
+
         <div className='homeContainer'>
           {loading ? (
             <div className='loading'>LOADING TWEETS...</div>

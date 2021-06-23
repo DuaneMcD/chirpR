@@ -12,7 +12,6 @@ import './search.css';
 const Search = () => {
   const [searchInput, setSearchInput] = useState('');
   const [tweetsArray, setTweetsArray] = useState([]);
-  const [includesArray, setIncludesArray] = useState([]);
   const [userInfo, setUserInfo] = useState([]);
   const [searched, setSearched] = useState(false);
 
@@ -51,7 +50,6 @@ const Search = () => {
     const response = await fetch(`http://localhost:3000/timeline/${userId}`);
     const message = await response.json();
     setTweetsArray(await message.data);
-    setIncludesArray(await message.includes.users);
     return message;
   };
 
@@ -83,7 +81,7 @@ const Search = () => {
             <div className='noSearch'>
               <img src={bigBird} alt='Chirpr Logo' />
             </div>
-          ) : (
+          ) : tweetsArray === undefined ? null : (
             tweetsArray.map((tweet, index) => {
               return (
                 <>
