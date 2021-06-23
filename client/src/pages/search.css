@@ -14,7 +14,7 @@
   border: none;
   border-radius: 9px 0 0 9px;
   color: ghostwhite;
-  background-color: darkblue;
+  background-color: rgb(43, 43, 99);
   width: 38vw;
   height: 5vh;
   font-size: calc(10px + 1vw);
@@ -24,7 +24,7 @@
 }
 .searchBar::placeholder {
   font-weight: 300;
-  color: lightsteelblue;
+  color: rgb(121, 173, 241);
 }
 .searchBar:focus,
 .search-icon:active {
@@ -37,6 +37,7 @@
   justify-content: center;
   align-items: center;
   width: 2em;
+  font-size: 2em;
   text-align: left;
   border-radius: 0 9px 9px 0;
   padding: 0;
@@ -48,6 +49,7 @@
 }
 
 .searchContainer {
+  font-family: 'Trebuchet MS';
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -61,8 +63,8 @@
   grid-area: card;
   display: flex;
   flex-direction: row;
-  border-radius: 0.1em;
-  padding: 1em;
+  border-radius: 0.14em;
+  padding: 1.5em 2.25em 1.5em 1.5em;
   background-color: white;
   width: 50vw;
   transition: box-shadow 0.2s ease-in-out, transform 0.1s ease-in-out;
@@ -73,8 +75,9 @@
   border: black 0.05em solid;
 }
 .tweetInfo {
-  font-weight: bold;
   display: flex;
+  font-size: 1.2em;
+  font-weight: bold;
   margin-bottom: 0.75em;
 }
 .username,
@@ -82,29 +85,28 @@
   font-weight: lighter;
   color: grey;
 }
+.tweetText {
+  font-size: 1.25em;
+  font-weight: 600;
+  line-height: 1.15;
+}
 .ant-card-body {
   margin-left: 0.75em;
 }
-.ant-card-meta-title {
-  font-weight: bold;
-  margin-bottom: 0.35em;
-}
 .buttons {
-  margin-block: 0.7em;
   display: flex;
 }
-.setting:hover {
-  color: rgb(0, 117, 250);
+.like,
+.comment,
+.share {
+  font-size: 1.3em;
+  padding: 1.5em 1em 0 1em;
 }
-.edit {
-  margin-left: auto;
+.like {
+  padding-left: 0;
 }
-.edit:hover {
-  color: rgb(0, 117, 250);
-}
-.ellipsis {
-  margin-inline: auto;
-}
-.ellipsis:hover {
+.like:hover,
+.share:hover,
+.comment:hover {
   color: rgb(0, 117, 250);
 }

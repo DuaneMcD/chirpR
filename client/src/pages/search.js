@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Card } from 'antd';
 import {
-  EditOutlined,
-  EllipsisOutlined,
-  SettingOutlined,
+  EditFilled,
+  SendOutlined,
+  LikeFilled,
   SearchOutlined,
 } from '@ant-design/icons';
 import bigBird from '../images/birdGif.gif';
@@ -105,9 +105,9 @@ const Search = () => {
                       </div>
                       <div className='tweetText'>{tweet.text}</div>
                       <div className='buttons'>
-                        <SettingOutlined className='setting' key='setting' />
-                        <EditOutlined className='edit' key='edit' />
-                        <EllipsisOutlined className='ellipsis' key='ellipsis' />
+                        <LikeFilled className='like' key='like' />
+                        <EditFilled className='comment' key='comment' />
+                        <SendOutlined className='share' key='share' />
                       </div>
                     </Card>
                   </div>
