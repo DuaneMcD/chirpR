@@ -5,7 +5,7 @@
 .homeContainer {
   display: flex;
   flex-direction: row;
-  margin: 0.5em 8vw 0 20vw;
+  margin: 0.85em 8vw 0 20vw;
   gap: 1.25em;
 }
 .moreUsers,
@@ -19,7 +19,7 @@
 }
 .moreUsers {
   position: fixed;
-  top: 13vh;
+  top: 11.7vh;
   right: 2px;
   opacity: 0;
   z-index: 10;
