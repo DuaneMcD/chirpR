@@ -51,15 +51,14 @@ const Search = () => {
     <>
       <div className='searchPage'>
         <div className='topbar'>
-          <Search
-            className='antSearchBar'
+          <input
+            className='searchBar'
+            type='search'
+            spellcheck='true'
             placeholder='Search by username to view timeline'
-            onSearch={handleSearch}
+            onClick={handleSearch}
             onChange={e => setSearchInput(e.target.value)}
-            style={{ width: 200 }}
-            allowClear
-            enterButton
-            size='large'
+            width={200}
           />
         </div>
         <div className='searchContainer'>

@@ -9,6 +9,23 @@
   top: 0;
   z-index: 2;
 }
+.searchBar {
+  box-sizing: border-box;
+  border: none;
+  border-radius: 4%;
+  color: ghostwhite;
+  background-color: darkslategray;
+  width: 30vw;
+  height: 5vh;
+  font-size: 1.2vw;
+  text-align: center;
+}
+.searchBar::placeholder {
+  color: lightsteelblue;
+}
+.searchBar:active {
+  border: none;
+}
 .searchContainer {
   display: flex;
   flex-direction: column;
