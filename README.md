@@ -2,7 +2,7 @@
 ## Twitter API & Tweet Visualizations
 
 This project is hosted on Heroku [View Chirpr Demo](https://swapi-v.herokuapp.com/).
-<img align="right" src="screenshot.png" width="400">
+<img align="right" src="screenshot.png" width="080">
 
 ## Summary
 
