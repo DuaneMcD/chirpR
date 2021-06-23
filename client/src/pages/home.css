@@ -1,48 +1,48 @@
 .popular-streams {
   color: white;
   font-family: 'Trebuchet MS';
-  text-decoration: none;
 }
 .homeContainer {
   display: flex;
   flex-direction: row;
-  /* flex-wrap: wrap; */
-  margin: 2em 6em 5em 18em;
+  margin: 2em 6em 0 21em;
   gap: 1.25em;
-  z-index: 1;
+}
+.title {
+  margin: 0.1em 0 0.1em 0;
 }
 .accordion {
-  width: 27vw;
+  min-width: 20vw;
 }
 .accordion-btn {
-  display: flex;
-  flex-direction: row;
-  font-size: 1.66em;
+  font-size: 1.5vw;
   font-weight: bold;
   color: black;
   background-color: whitesmoke;
   width: 100%;
-  padding: 4px;
-  margin: 0.25em 0 0.15em 0;
-  text-align: left;
+  padding: 0 2px 0 2px;
+  margin: 0 0 0.15em 0;
+  text-align: center;
   cursor: pointer;
 }
 .accordion-btn:hover {
   color: rgb(16, 143, 194);
   background-color: lightsteelblue;
 }
-.caret {
-  margin-left: auto;
+.caret-container {
+  text-align: right;
 }
 .caret-rotate {
   transform: rotate(180deg);
-  margin-left: auto;
 }
 .accordion-content {
-  font-size: 1.2em;
+  font-size: 1.15vw;
+  font-weight: 600;
   color: black;
   background-color: rgb(253, 251, 244);
-  padding: 5px;
+  padding: 8px;
+  height: 70vh;
+  overflow: auto;
 }
 .accordion-tweets {
   font-family: 'Trebuchet MS';

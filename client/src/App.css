@@ -33,6 +33,5 @@ body {
   display: flex;
   flex-direction: column;
   margin: 15vh auto 0 auto;
-  /* overflow-y: scroll; */
   overflow-x: scroll;
 }

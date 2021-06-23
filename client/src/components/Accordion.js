@@ -24,7 +24,9 @@ const Accordion = props => {
           className={`accordion-btn ${active} `}
           onClick={toggleAccordion}>
           <p className='title'>{props.title}</p>
-          <CaretDownFilled className={caret} />
+          <div className='caret-container'>
+            <CaretDownFilled className={caret} />
+          </div>
         </button>
         <div style={{ display: `${display}` }} className='accordion-content'>
           {props.userStream?.map((tweet, index) => (

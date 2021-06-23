@@ -16,12 +16,13 @@ const about = () => {
             <h2>Built with:</h2>
             <ul>
               <li>HTML 5</li>
-              <li>Git</li>
               <li>GitHub</li>
+              <li>Git</li>
+              <li>Axios</li>
               <li>React.js</li>
               <li>Express.js</li>
+              <li>Puppeteer.js</li>
               <li>CSS Animations</li>
-              <li>Axios</li>
               <li>Twitter API 2.0</li>
               <li>CPanel Hosting</li>
             </ul>

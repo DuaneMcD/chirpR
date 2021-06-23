@@ -71,7 +71,7 @@ ul {
 }
 .duaneImg {
   height: 20vh;
-  margin-inline: auto;
+  margin: 0 auto 15px auto;
   border-radius: 400px;
 }
 .aboutDuane > h2 {

@@ -53,9 +53,11 @@ const Search = () => {
         <div className='topbar'>
           <Search
             className='antSearchBar'
-            placeholder='input search text'
+            placeholder='Search by username to view timeline'
             onSearch={handleSearch}
             onChange={e => setSearchInput(e.target.value)}
+            style={{ width: 200 }}
+            allowClear
             enterButton
             size='large'
           />
@@ -63,7 +65,6 @@ const Search = () => {
         <div className='searchContainer'>
           {searchInput === '' ? (
             <div className='noSearch'>
-              <p>Search For Someone</p>
               <img src={bigBird} alt='Chirpr Logo' />
             </div>
           ) : (
