@@ -23,14 +23,16 @@ const Search = () => {
     }
   };
 
-  const handleSearch = async e => {
-    let newID = await getUserId(searchInput);
-    if (newID !== undefined) {
-      await getUserInfo(newID);
-      await fetchUserTweets(newID);
-    } else {
-      return alert(`user not found`);
+  const handleSearch = async () => {
+    let newID = '';
+    try {
+      newID = await getUserId(searchInput);
+    } catch (error) {
+      alert(`Sorry, Twitter username ${searchInput} not found`);
+      return;
     }
+    await getUserInfo(newID);
+    await fetchUserTweets(newID);
   };
 
   const getUserInfo = async id => {
@@ -65,12 +67,11 @@ const Search = () => {
           <input
             className='searchBar'
             type='search'
-            spellcheck='true'
+            spellCheck={true}
             placeholder='Search by username to view timeline'
             onKeyDown={handleKeyDown}
             onChange={e => setSearchInput(e.target.value)}
             results={8}
-            incremental={true}
           />
           <SearchOutlined
             className='searchBar search-icon'
