@@ -81,7 +81,7 @@ const Home = () => {
     <>
       <div className='homePage'>
         <div className='topbar'>
-          <h1 className='popular-streams'>Explore Trending Twitter Feeds</h1>
+          <h1 className='popular-streams'>Explore Trending Twitter Feeds ➡</h1>
         </div>
         <div className='homeContainer'>
           {loading ? (
