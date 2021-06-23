@@ -12,20 +12,41 @@
 .searchBar {
   box-sizing: border-box;
   border: none;
-  border-radius: 4%;
+  border-radius: 9px 0 0 9px;
   color: ghostwhite;
-  background-color: darkslategray;
-  width: 30vw;
+  background-color: darkblue;
+  width: 38vw;
   height: 5vh;
-  font-size: 1.2vw;
+  font-size: calc(10px + 1vw);
+  font-weight: 800;
   text-align: center;
+  padding-left: 1em;
 }
 .searchBar::placeholder {
+  font-weight: 300;
   color: lightsteelblue;
 }
-.searchBar:active {
-  border: none;
+.searchBar:focus,
+.search-icon:active {
+  color: black;
+  background-color: ghostwhite;
+  outline: none;
 }
+.search-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2em;
+  text-align: left;
+  border-radius: 0 9px 9px 0;
+  padding: 0;
+  cursor: pointer;
+}
+.search-icon:focus {
+  color: ghostwhite;
+  background-color: darkblue;
+}
+
 .searchContainer {
   display: flex;
   flex-direction: column;

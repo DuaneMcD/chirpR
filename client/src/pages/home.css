@@ -5,8 +5,15 @@
 .homeContainer {
   display: flex;
   flex-direction: row;
-  margin: 2em 6em 0 21em;
+  margin: 2em 8vw 0 20vw;
   gap: 1.25em;
+}
+.loading {
+  font-family: 'Trebuchet MS';
+  color: ghostwhite;
+  font-size: 3vw;
+  text-align: center;
+  margin: 2em 6em 0 8em;
 }
 .title {
   margin: 0.1em 0 0.1em 0;

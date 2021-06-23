@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Input, Card } from 'antd';
+import { Card } from 'antd';
 import {
   EditOutlined,
   EllipsisOutlined,
   SettingOutlined,
+  SearchOutlined,
 } from '@ant-design/icons';
 import bigBird from '../images/birdGif.gif';
 import './search.css';
@@ -13,13 +14,23 @@ const Search = () => {
   const [tweetsArray, setTweetsArray] = useState([]);
   const [includesArray, setIncludesArray] = useState([]);
   const [userInfo, setUserInfo] = useState([]);
-  const { Search } = Input;
+  const [searched, setSearched] = useState(false);
+
+  const handleKeyDown = e => {
+    if (e.keyCode === 13) {
+      setSearched(true);
+      handleSearch();
+    }
+  };
 
   const handleSearch = async e => {
-    console.log(`Searched For:${searchInput}`);
     let newID = await getUserId(searchInput);
-    await getUserInfo(newID);
-    await fetchUserTweets(newID);
+    if (newID !== undefined) {
+      await getUserInfo(newID);
+      await fetchUserTweets(newID);
+    } else {
+      return alert(`user not found`);
+    }
   };
 
   const getUserInfo = async id => {
@@ -56,13 +67,18 @@ const Search = () => {
             type='search'
             spellcheck='true'
             placeholder='Search by username to view timeline'
-            onClick={handleSearch}
+            onKeyDown={handleKeyDown}
             onChange={e => setSearchInput(e.target.value)}
-            width={200}
+            results={8}
+            incremental={true}
+          />
+          <SearchOutlined
+            className='searchBar search-icon'
+            onClick={handleSearch}
           />
         </div>
         <div className='searchContainer'>
-          {searchInput === '' ? (
+          {searched === false ? (
             <div className='noSearch'>
               <img src={bigBird} alt='Chirpr Logo' />
             </div>

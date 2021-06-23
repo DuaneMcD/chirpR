@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Accordion from '../components/Accordion';
+import { Spin } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
 import './home.css';
 
 const Home = () => {
@@ -8,7 +10,8 @@ const Home = () => {
   const [tweetsArray, setTweetsArray] = useState([]);
   const [includesArray, setIncludesArray] = useState([]);
   const [usernameArray, setUsernameArray] = useState([]);
-  const [testArray, setTestArray] = useState([]);
+  const [loading, setLoading] = useState();
+  const loadingIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 
   const getFavoriteUsers = async () => {
     const mostFollowedUsers = await fetch(`http://localhost:3000/puppet/`);
@@ -25,6 +28,7 @@ const Home = () => {
       const idNumberJson = idNumber.json();
       idNumbers.push(await idNumberJson);
     }
+    setLoading(true);
     console.log(idNumbers);
     return setMostFollowedIDs(idNumbers);
   };
@@ -64,6 +68,7 @@ const Home = () => {
       twitterHandles.push(handle);
     }
     setUsernameArray(twitterHandles);
+    setLoading(false);
   };
 
   const getUserInfo = async id => {
@@ -79,14 +84,18 @@ const Home = () => {
           <h1 className='popular-streams'>Explore Trending Twitter Feeds</h1>
         </div>
         <div className='homeContainer'>
-          {tweetsArray.map((tweet, index) => {
-            return (
-              <Accordion
-                title={`@${usernameArray[index]}`}
-                userStream={tweet}
-              />
-            );
-          })}
+          {loading ? (
+            <div className='loading'>LOADING TWEETS...</div>
+          ) : (
+            tweetsArray.map((tweet, index) => {
+              return (
+                <Accordion
+                  title={`@${usernameArray[index]}`}
+                  userStream={tweet}
+                />
+              );
+            })
+          )}
         </div>
       </div>
     </>
