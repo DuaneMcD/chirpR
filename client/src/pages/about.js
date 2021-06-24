@@ -15,16 +15,16 @@ const about = () => {
           <div className='aboutApp'>
             <h2>Built with:</h2>
             <ul>
-              <li>HTML 5</li>
-              <li>GitHub</li>
               <li>Git</li>
               <li>Axios</li>
+              <li>GitHub</li>
+              <li>HTML 5</li>
               <li>React.js</li>
               <li>Express.js</li>
               <li>Puppeteer.js</li>
-              <li>CSS Animations</li>
+              <li>CSS Animation</li>
+              <li>Heroku Hosting</li>
               <li>Twitter API 2.0</li>
-              <li>CPanel Hosting</li>
             </ul>
           </div>
           <div className='aboutDuane'>
