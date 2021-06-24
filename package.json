@@ -8,7 +8,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "client": "npm run watch --prefix client",
     "dev": "concurrently \"nodemon app.js\" \"npm run client\"",
-    "start": "concurrently \"nodemon app.js\""
+    "start": "node app.js",
+    "heroku-postbuild": "npm install && cd client && npm install && npm run build"
   },
   "repository": {
     "type": "git",
