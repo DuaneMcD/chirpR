@@ -98,7 +98,8 @@
 }
 .like,
 .comment,
-.share {
+.share,
+.retweet {
   font-size: 1.3em;
   padding: 1.5em 1em 0 1em;
 }
@@ -107,6 +108,20 @@
 }
 .like:hover,
 .share:hover,
-.comment:hover {
+.comment:hover,
+.retweet:hover {
   color: rgb(0, 117, 250);
+}
+.like:active,
+.share:active,
+.comment:active,
+.retweet:active {
+  color: red;
+}
+.like:hover::after,
+.share:hover::after,
+.comment:hover::after,
+.retweet:hover::after {
+  content: attr(tooltip);
+  font-size: 0.75em;
 }
