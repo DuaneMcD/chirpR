@@ -5,7 +5,6 @@ import {
   SendOutlined,
   LikeFilled,
   SearchOutlined,
-  RetweetOutlined,
 } from '@ant-design/icons';
 import bigBird from '../images/birdGif.gif';
 import './search.css';
@@ -106,26 +105,9 @@ const Search = () => {
                       </div>
                       <div className='tweetText'>{tweet.text}</div>
                       <div className='buttons'>
-                        <LikeFilled
-                          className='like'
-                          key='like'
-                          tooltip='Liked! +1'
-                        />
-                        <RetweetOutlined
-                          className='retweet'
-                          key='retweet'
-                          tooltip='Retweet! 🐥'
-                        />
-                        <EditFilled
-                          className='comment'
-                          key='comment'
-                          tooltip='Commented! 📩'
-                        />
-                        <SendOutlined
-                          className='share'
-                          key='share'
-                          tooltip='Shared! ♥'
-                        />
+                        <LikeFilled className='like' key='like' />
+                        <EditFilled className='comment' key='comment' />
+                        <SendOutlined className='share' key='share' />
                       </div>
                     </Card>
                   </div>
