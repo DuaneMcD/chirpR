@@ -2,11 +2,11 @@
 ## Twitter API & Tweet Visualizations
 
 This project is hosted on Heroku [View Chirpr Demo](https://swapi-v.herokuapp.com/).
-<img align="right" src="screenshot.png" width="800">
+<img align="right" src="screenshot.png" width="600">
 
 ## Summary
 
-This app was an ejoyable build. I used this platform to inform my React knowledge. In the process I added several npm packages including Bootstrap 5, Chart.js, and poppper. This app pushed me into learning the react context api. I chose context over redux to keep the code as lean as possible.
+ Chirpr is a real-time social media parser built on React and Node.js. It pulls up-to-date tweets from twitter. The home page utilizes puppeteer.js to scrape the most followed twitter accounts wikipedia page to populate featured tweets. 
 
 ## Features
 
