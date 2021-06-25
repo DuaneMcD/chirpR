@@ -36,7 +36,7 @@ const scrapeWiki = async url => {
   browser.close();
 };
 
-app.get('/puppet/', async (req, res) => {
+app.get('/puppet', async (req, res) => {
   await scrapeWiki(
     'https://en.wikipedia.org/wiki/List_of_most-followed_Twitter_accounts'
   );

@@ -10,7 +10,7 @@ const Home = () => {
   const [usernameArray, setUsernameArray] = useState([]);
 
   const getFavoriteUsers = async () => {
-    const mostFollowedUsers = await fetch(`/puppet/`);
+    const mostFollowedUsers = await fetch(`/puppet`);
     const favoriteUsersJson = await mostFollowedUsers.json();
     return setMostFollowedUsers(favoriteUsersJson);
   };
