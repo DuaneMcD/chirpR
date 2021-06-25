@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Accordion from '../components/Accordion';
-import { Spin } from 'antd';
-import { LoadingOutlined } from '@ant-design/icons';
 import './home.css';
 
 const Home = () => {
@@ -9,12 +7,10 @@ const Home = () => {
   const [mostFollowedUsers, setMostFollowedUsers] = useState([]);
   const [mostFollowedIDs, setMostFollowedIDs] = useState([]);
   const [tweetsArray, setTweetsArray] = useState([]);
-  const [includesArray, setIncludesArray] = useState([]);
   const [usernameArray, setUsernameArray] = useState([]);
-  const loadingIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 
   const getFavoriteUsers = async () => {
-    const mostFollowedUsers = await fetch(`http://localhost:3000/puppet/`);
+    const mostFollowedUsers = await fetch(`/puppet/`);
     const favoriteUsersJson = await mostFollowedUsers.json();
     return setMostFollowedUsers(favoriteUsersJson);
   };
@@ -22,14 +18,11 @@ const Home = () => {
   const getFavoriteIds = async () => {
     const idNumbers = [];
     for (let i = 0; i < mostFollowedUsers.length; i++) {
-      const idNumber = await fetch(
-        `http://localhost:3000/users/${mostFollowedUsers[i]}`
-      );
+      const idNumber = await fetch(`/users/${mostFollowedUsers[i]}`);
       const idNumberJson = idNumber.json();
       idNumbers.push(await idNumberJson);
     }
     setLoading(true);
-    console.log(idNumbers);
     return setMostFollowedIDs(idNumbers);
   };
 
@@ -52,11 +45,10 @@ const Home = () => {
   const fetchUserTweets = async () => {
     const tweets = [];
     mostFollowedIDs.map(async id => {
-      const response = await fetch(`http://localhost:3000/timeline/${id}`);
+      const response = await fetch(`/timeline/${id}`);
       const message = await response.json();
       tweets.push(await message.data);
       setTweetsArray(tweets);
-      setIncludesArray(await message.includes);
     });
   };
 
@@ -72,7 +64,7 @@ const Home = () => {
   };
 
   const getUserInfo = async id => {
-    const response = await fetch(`http://localhost:3000/idlookup/${id}`);
+    const response = await fetch(`/idlookup/${id}`);
     const message = await response.json();
     return await message.data.username;
   };
@@ -96,6 +88,7 @@ const Home = () => {
             tweetsArray.map((tweet, index) => {
               return (
                 <Accordion
+                  key={tweet[0].id}
                   title={`@${usernameArray[index]}`}
                   userStream={tweet}
                 />

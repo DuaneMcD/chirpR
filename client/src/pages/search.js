@@ -35,19 +35,19 @@ const Search = () => {
   };
 
   const getUserInfo = async id => {
-    const response = await fetch(`http://localhost:3000/idlookup/${id}`);
+    const response = await fetch(`/idlookup/${id}`);
     const message = await response.json();
     setUserInfo(message.data);
   };
 
   const getUserId = async user => {
-    const response = await fetch(`http://localhost:3000/users/${user}`);
+    const response = await fetch(`/users/${user}`);
     const message = await response.json();
     return message;
   };
 
   const fetchUserTweets = async userId => {
-    const response = await fetch(`http://localhost:3000/timeline/${userId}`);
+    const response = await fetch(`/timeline/${userId}`);
     const message = await response.json();
     setTweetsArray(await message.data);
     return message;
@@ -85,10 +85,9 @@ const Search = () => {
             tweetsArray.map((tweet, index) => {
               return (
                 <>
-                  <div className='stream-container'>
+                  <div className='stream-container' key={tweet.id}>
                     <Card
                       hoverable
-                      key={tweet.id}
                       className='card'
                       cover={
                         <img alt='User' src={userInfo.profile_image_url} />
@@ -105,9 +104,18 @@ const Search = () => {
                       </div>
                       <div className='tweetText'>{tweet.text}</div>
                       <div className='buttons'>
-                        <LikeFilled className='like' key='like' />
-                        <EditFilled className='comment' key='comment' />
-                        <SendOutlined className='share' key='share' />
+                        <LikeFilled
+                          className='like'
+                          // key='like'
+                        />
+                        <EditFilled
+                          className='comment'
+                          // key='comment'
+                        />
+                        <SendOutlined
+                          className='share'
+                          // key='share'
+                        />
                       </div>
                     </Card>
                   </div>

@@ -30,7 +30,7 @@ const Accordion = props => {
         </button>
         <div style={{ display: `${display}` }} className='accordion-content'>
           {props.userStream?.map((tweet, index) => (
-            <div className='single-tweet'>
+            <div className='single-tweet' key={tweet.id}>
               <p className='time-stamp'>{`${handleTimeStamp(
                 tweet.created_at
               )}`}</p>
