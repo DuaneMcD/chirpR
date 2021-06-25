@@ -66,7 +66,7 @@ const Search = () => {
             className='searchBar'
             type='search'
             spellCheck={true}
-            placeholder='Search by username to view timeline'
+            placeholder='Search by Twitter handle to view timeline'
             onKeyDown={handleKeyDown}
             onChange={e => setSearchInput(e.target.value)}
             results={8}
