@@ -34,12 +34,12 @@ const scrapeWiki = async url => {
     twitterHandles.push(noLeadingAt);
   }
   browser.close();
-};
+}; 
 
 app.get('/puppet', async (req, res) => {
   const url =
     'https://en.wikipedia.org/wiki/List_of_most-followed_Twitter_accounts';
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({ headless: true, args: ["--no-sandbox"]});
   const page = await browser.newPage();
   await page.goto(url);
 
