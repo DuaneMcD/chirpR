@@ -1,0 +1,117 @@
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgb(0, 32, 50);
+  height: 15vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  z-index: 2;
+}
+.searchBar {
+  box-sizing: border-box;
+  border: none;
+  border-radius: 9px 0 0 9px;
+  color: ghostwhite;
+  background-color: rgb(43, 43, 99);
+  width: 38vw;
+  height: 5vh;
+  font-size: calc(10px + 1vw);
+  font-weight: 800;
+  text-align: center;
+  padding-left: 1em;
+}
+.searchBar::placeholder {
+  font-weight: 300;
+  color: rgb(121, 173, 241);
+}
+.searchBar:focus,
+.search-icon:active {
+  color: black;
+  background-color: ghostwhite;
+  outline: none;
+}
+.search-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2em;
+  font-size: 2em;
+  text-align: left;
+  border-radius: 0 9px 9px 0;
+  padding: 0;
+  cursor: pointer;
+}
+.search-icon:focus {
+  color: ghostwhite;
+  background-color: darkblue;
+}
+
+.searchContainer {
+  font-family: 'Trebuchet MS';
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4em;
+  gap: 1.25em;
+  width: 100%;
+  z-index: 1;
+}
+.card {
+  grid-area: card;
+  display: flex;
+  flex-direction: row;
+  border-radius: 0.14em;
+  padding: 1.5em 2.25em 1.5em 1.5em;
+  background-color: white;
+  width: 50vw;
+  transition: box-shadow 0.2s ease-in-out, transform 0.1s ease-in-out;
+}
+.card:hover {
+  box-shadow: 3px 3px 3px 1px rgba(83, 83, 180, 0.4);
+  transform: scale(1.025);
+  border: black 0.05em solid;
+}
+.tweetInfo {
+  display: flex;
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 0.75em;
+}
+.username,
+.time-stamp {
+  font-weight: lighter;
+  color: grey;
+}
+.tweetText {
+  font-size: 1.25em;
+  font-weight: 600;
+  line-height: 1.15;
+}
+.ant-card-body {
+  margin-left: 0.75em;
+}
+.buttons {
+  display: flex;
+}
+.searchContainer img {
+  min-width: 3.25em;
+  border-radius: 0.5em;
+}
+
+.like,
+.comment,
+.share {
+  font-size: 1.3em;
+  padding: 1.5em 1em 0 1em;
+}
+.like {
+  padding-left: 0;
+}
+.like:hover,
+.share:hover,
+.comment:hover {
+  color: rgb(0, 117, 250);
+}

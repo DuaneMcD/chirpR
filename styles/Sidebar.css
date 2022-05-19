@@ -1,0 +1,52 @@
+.quill-logo {
+  padding: 0;
+  display: block;
+  height: 14vh;
+  margin-inline: auto;
+  margin-block: 1.5em;
+}
+.quill-logo:hover {
+  opacity: 0.5;
+}
+
+.sidebar {
+  position: fixed;
+  height: 100vh;
+  width: 18vw;
+  background: rgb(0, 32, 50);
+  border-right: 0.005em solid rgb(80, 80, 90);
+  z-index: 50;
+  top: 0;
+}
+.nav-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 6em;
+  margin-top: 7em;
+  list-style: none;
+}
+
+.sidebar .anticon {
+  display: flex;
+  font-size: 5.5vh;
+  color: white;
+  margin-inline: auto;
+}
+.sidebar .anticon:hover {
+  color: skyblue;
+  padding-bottom: 0.2em;
+  border-bottom: 4px solid #fff;
+  transition: all 0.4s ease-out;
+}
+.sidebar .anticon .is-active {
+  color: skyblue;
+  padding-bottom: 0.15em;
+  border-bottom: 4px solid #fff;
+  transition: all 0.4s ease-out;
+}
+.fa-bars {
+  color: #fff;
+}
+.nav-links-mobile {
+  display: none;
+}

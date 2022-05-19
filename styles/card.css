@@ -1,0 +1,13 @@
+.card {
+  display: flex;
+  /* flex-direction: column; */
+}
+.avatar {
+  width: 10%;
+  height: 10%;
+  padding: 3px;
+  margin: 2px;
+}
+.tweetContent {
+  margin-top: 2em;
+}

@@ -1,0 +1,47 @@
+.modal {
+  display: flex;
+  flex-direction: column;
+  width: 30vw;
+  font-size: 2.12vw;
+  font-family: 'Trebuchet MS';
+  text-align: center;
+  color: ghostwhite;
+  background-color: black;
+  margin: 18vh 0 0 37vw;
+  padding: 1.5vh;
+  border-radius: 3px;
+}
+.browseAsGuest {
+  font-family: 'Trebuchet MS';
+  font-size: 1.1vw;
+  font-weight: bold;
+  text-decoration: none;
+  color: black;
+  background-color: ghostwhite;
+  padding: 0.6vw;
+  margin: 2.75vh 0 0.6vh auto;
+  border: none;
+  border-radius: 2px;
+}
+.browseAsGuest:hover {
+  color: skyblue;
+  background-color: rgb(31, 31, 34);
+}
+
+#username,
+#password {
+  margin: auto;
+  font-weight: bold;
+  display: inline-block;
+  width: 150px;
+  text-align: left;
+}
+
+#username-label,
+#password-label {
+  font-size: calc(4px + 1vw);
+  margin: 3vh 3.75vw 2px 0;
+}
+#password {
+  margin-bottom: 2vw;
+}
