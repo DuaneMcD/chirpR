@@ -10,7 +10,6 @@ export default async function IdHandler(req, res) {
       config
     );
     const data = await response.json();
-    console.log(await data.data);
     res.status(200).send(data.data);
   } catch (err) {
     res.status(500).json(err);

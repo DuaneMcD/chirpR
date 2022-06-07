@@ -1,73 +1,101 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Accordion from '../components/Accordion';
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
   const [mostFollowedUsers, setMostFollowedUsers] = useState([]);
-  const [mostFollowedIDs, setMostFollowedIDs] = useState([]);
   const [tweetsArray, setTweetsArray] = useState([]);
   const [usernameArray, setUsernameArray] = useState([]);
+  const scrollRef = useRef();
 
-  const getFavoriteUsers = async () => {
-    const mostFollowedUsers = await fetch(`/api/puppet`);
-    const favoriteUsersJson = await mostFollowedUsers.json();
-    return setMostFollowedUsers(favoriteUsersJson);
+  const removeUsers = user => {
+    // inactive accounts cause undefined errors
+    return user !== 'realDonaldTrump' && user !== 'ArianaGrande';
   };
 
-  const getFavoriteIds = () => {
-    const idNumbers = [];
-    mostFollowedUsers.forEach(async user => {
-      const userInfo = await fetch(`/api/users/${user}`);
-      const userInfoJson = await userInfo.json();
-      const userID = await userInfoJson.id;
-      console.log(await userID);
-      idNumbers.push(await userID);
-    });
-    setLoading(true);
-    return setMostFollowedIDs(idNumbers);
-  };
-
+  // scrape most followed users from wikipedia list
   useEffect(() => {
-    getFavoriteUsers();
+    setLoading(true);
+    fetch(`/api/puppet`)
+      .then(res => {
+        return res.json();
+      })
+      .then(res => {
+        return res.filter(removeUsers);
+      })
+      .then(res => {
+        setMostFollowedUsers(res);
+      });
   }, []);
 
+  // get ID's for the top profiles (scraped from wikipedia)
   useEffect(() => {
-    getFavoriteIds();
+    let isCancelled = false;
+    let currentTweets = [];
+    if (!isCancelled) {
+      mostFollowedUsers?.map(async user => {
+        await fetch(`/api/users/${user}`)
+          .then(res => {
+            return res.json();
+          })
+          .then(data => {
+            console.log(user);
+            return fetch(`/api/timeline/${data.data?.id}`);
+          })
+          .then(res => {
+            return res.json();
+          })
+          .then(tweets => {
+            return currentTweets.push(tweets);
+          })
+          .then(() => {
+            mostFollowedUsers.length == currentTweets.length
+              ? (setTweetsArray([...currentTweets]),
+                console.log('tweets loaded'))
+              : '';
+          })
+          .catch(err => {
+            return console.log(err);
+          });
+      });
+    }
+
+    return () => {
+      isCancelled = true;
+    };
   }, [mostFollowedUsers]);
 
   useEffect(() => {
-    fetchUserTweets();
-  }, [mostFollowedIDs]);
-
-  useEffect(() => {
-    handleUserData();
-  }, [tweetsArray]);
-
-  const fetchUserTweets = async () => {
-    const tweets = [];
-    mostFollowedIDs.map(async id => {
-      const response = await fetch(`/api/timeline/${id}`);
-      const message = await response;
-      tweets.push(await message.data);
-      setTweetsArray(tweets);
-    });
-  };
-
-  const handleUserData = async () => {
-    let twitterHandles = [];
-    for (let i = 0; i < tweetsArray.length; i++) {
-      const twitHandle = tweetsArray[i];
-      let handle = await getUserInfo(twitHandle[0]?.author_id);
-      twitterHandles.push(handle);
+    let isCancelled = false;
+    let handles = [];
+    if (!isCancelled) {
+      tweetsArray?.map(async tweet => {
+        await getUserInfo(tweet[0]?.author_id)
+          .then(res => {
+            return handles.push(res);
+          })
+          .then(() => {
+            if (tweetsArray.length == handles.length) {
+              console.log('usernames loaded');
+              setUsernameArray([...handles]);
+              return setLoading(false);
+            }
+          });
+      });
     }
-    setUsernameArray(twitterHandles);
-    setLoading(false);
-  };
+    return () => {
+      isCancelled = true;
+    };
+  }, [tweetsArray]);
 
   const getUserInfo = async id => {
     const response = await fetch(`/api/idlookup/${id}`);
-    const message = await response.json();
-    return await message.data.username;
+    const message = await response?.json();
+    return await message.username;
+  };
+
+  const scrollHomeTweets = () => {
+    scrollRef.scrollRight(100);
   };
 
   return (
@@ -79,14 +107,16 @@ const Home = () => {
         {loading ? (
           <p className='loading-mini'>Loading...</p>
         ) : (
-          <p className='moreUsers'>more users ➡</p>
+          <button className='moreUsers' onClick={scrollHomeTweets}>
+            more users ➡
+          </button>
         )}
 
-        <div className='homeContainer'>
+        <div className='homeContainer' ref={scrollRef}>
           {loading ? (
             <div className='loading'>LOADING TWEETS...</div>
           ) : (
-            tweetsArray.map((tweet, index) => {
+            tweetsArray?.map((tweet, index) => {
               return (
                 <Accordion
                   key={tweet[0].id}

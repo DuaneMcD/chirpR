@@ -16,12 +16,14 @@ export default function Navbar() {
     <>
       <div className='sidebar'>
         <Link href='/home'>
-          <Image
-            className='quill-logo'
-            onClick={handleClick}
-            src={logo}
-            alt='Chirpr logo'
-          />
+          <>
+            <Image
+              className='quill-logo'
+              onClick={handleClick}
+              src={logo}
+              alt='Chirpr logo'
+            />
+          </>
         </Link>
         <div className={click ? 'nav-menu active' : 'nav-menu'}>
           <Link href='/home' activeClassName='is-active' className='nav-links'>

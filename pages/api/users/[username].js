@@ -10,5 +10,5 @@ export default async function Username(req, res) {
     config
   );
   const data = await response.json();
-  res.status(200).send(data.data);
+  res.status(200).send(data);
 }
