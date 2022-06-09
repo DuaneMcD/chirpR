@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "heroku-postbuild": "npm install && npm run build"
+    "heroku-postbuild": "npm ci && npm run build"
   },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
