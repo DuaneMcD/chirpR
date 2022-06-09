@@ -5,7 +5,6 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
   const [mostFollowedUsers, setMostFollowedUsers] = useState([]);
   const [tweetsArray, setTweetsArray] = useState([]);
-  const [usernameArray, setUsernameArray] = useState([]);
   const scrollRef = useRef();
 
   const removeUsers = user => {
@@ -24,75 +23,62 @@ const Home = () => {
         return res.filter(removeUsers);
       })
       .then(res => {
-        setMostFollowedUsers(res);
+        return setMostFollowedUsers(res);
       });
   }, []);
 
   // get ID's for the top profiles (scraped from wikipedia)
   useEffect(() => {
-    let isCancelled = false;
-    let currentTweets = [];
-    if (!isCancelled) {
-      mostFollowedUsers?.map(async user => {
-        await fetch(`/api/users/${user}`)
+    async function fetchUserTweets() {
+      const promises = mostFollowedUsers?.map(async user => {
+        const userID = await fetch(`/api/users/${user}`)
           .then(res => {
             return res.json();
-          })
-          .then(data => {
-            console.log(user);
-            return fetch(`/api/timeline/${data.data?.id}`);
-          })
-          .then(res => {
-            return res.json();
-          })
-          .then(tweets => {
-            return currentTweets.push(tweets);
-          })
-          .then(() => {
-            mostFollowedUsers.length == currentTweets.length
-              ? (setTweetsArray([...currentTweets]),
-                console.log('tweets loaded'))
-              : '';
           })
           .catch(err => {
             return console.log(err);
           });
+
+        const recentTweets = await fetch(`/api/timeline/${userID.data?.id}`)
+          .then(res => {
+            return res.json();
+          })
+          .catch(err => {
+            return console.log(err);
+          });
+
+        const { username, profile_image_url, id, name } = await fetch(
+          `/api/idlookup/${userID.data?.id}`
+        )
+          .then(res => {
+            return res.json();
+          })
+          .catch(err => {
+            return console.log(err);
+          });
+
+        // console.log(userData);
+        return [
+          { username },
+          { profile_image_url },
+          { id },
+          { name },
+          { recentTweets },
+        ];
       });
+      const results = await Promise.all(promises);
+
+      return setTweetsArray(results);
     }
 
-    return () => {
-      isCancelled = true;
-    };
+    fetchUserTweets();
   }, [mostFollowedUsers]);
 
   useEffect(() => {
-    let isCancelled = false;
-    let handles = [];
-    if (!isCancelled) {
-      tweetsArray?.map(async tweet => {
-        await getUserInfo(tweet[0]?.author_id)
-          .then(res => {
-            return handles.push(res);
-          })
-          .then(() => {
-            if (tweetsArray.length == handles.length) {
-              console.log('usernames loaded');
-              setUsernameArray([...handles]);
-              return setLoading(false);
-            }
-          });
-      });
+    if (tweetsArray.length > 1) {
+      setLoading(false);
     }
-    return () => {
-      isCancelled = true;
-    };
   }, [tweetsArray]);
-
-  const getUserInfo = async id => {
-    const response = await fetch(`/api/idlookup/${id}`);
-    const message = await response?.json();
-    return await message.username;
-  };
 
   const scrollHomeTweets = () => {
     scrollRef.scrollRight(100);
@@ -116,12 +102,14 @@ const Home = () => {
           {loading ? (
             <div className='loading'>LOADING TWEETS...</div>
           ) : (
-            tweetsArray?.map((tweet, index) => {
+            Object.entries(tweetsArray).map(user => {
+              // console.log(user);
               return (
                 <Accordion
-                  key={tweet[0].id}
-                  title={`@${usernameArray[index]}`}
-                  userStream={tweet}
+                  key={Object.values(user[1][2])}
+                  title={`@${Object.values(user[1][0])}`}
+                  imageSRC={Object.values(user[1][1])[0]}
+                  userStream={Object.values(user[1][4])[0]}
                 />
               );
             })

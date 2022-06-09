@@ -11,7 +11,7 @@ export default async function scrapeWiki(req, res) {
   const page = await browser.newPage();
   await page.goto(url);
 
-  for (let i = 2; i < 12; i++) {
+  for (let i = 2; i < 20; i++) {
     const [el] = await page.$x(
       `/html/body/div[3]/div[3]/div[5]/div[1]/table/tbody/tr[${i}]/td[2]/span/a`
     );

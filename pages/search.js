@@ -43,7 +43,7 @@ const Search = () => {
   const getUserId = async user => {
     const response = await fetch(`/api/users/${user}`);
     const message = await response.json();
-    return message.id;
+    return message.data.id;
   };
 
   const fetchUserTweets = async userId => {
@@ -82,7 +82,7 @@ const Search = () => {
               <Image src={bigBird} alt='Chirpr Logo' />
             </div>
           ) : tweetsArray === undefined ? null : (
-            tweetsArray.map((tweet, index) => {
+            tweetsArray.map(tweet => {
               return (
                 <>
                   <div className='stream-container' key={tweet.id}>

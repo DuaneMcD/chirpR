@@ -7,6 +7,7 @@
   flex-direction: row;
   margin: 0.85em 8vw 0 20vw;
   gap: 1.25em;
+  scroll-behavior: auto;
 }
 .moreUsers,
 .loading-mini {
@@ -39,28 +40,38 @@
 .loading-mini {
   animation: blink-blue 1s ease-out 8 alternate;
 }
-.title {
-  margin: 0.1em 0 0.1em 0;
-}
 .accordion {
-  min-width: 20vw;
+  min-width: 19vw;
 }
 .accordion-btn {
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
   font-size: 1.5vw;
   font-weight: bold;
   color: black;
   background-color: rgb(253, 253, 256);
   width: 100%;
-  padding: 0 2px 0 2px;
+  padding: 0.5em 0.6em 0 0.6em;
   margin: 0 0 0.15em 0;
   text-align: center;
   cursor: pointer;
 }
 .accordion-btn:hover {
-  color: rgb(16, 143, 194);
-  background-color: lightsteelblue;
+  color: rgb(0, 181, 252);
+  background-color: rgb(220, 232, 247);
+}
+.userAvatar {
+  border-radius: 1.3em;
+}
+.title {
+  margin-inline: auto;
+  margin-block: auto;
+  padding-block: 0.2em;
 }
 .caret-container {
+  margin-top: auto;
+  margin-left: auto;
   text-align: right;
 }
 .caret-rotate {
@@ -75,9 +86,14 @@
   height: 70vh;
   overflow: auto;
 }
-.accordion-tweets {
+
+.single-tweet {
   font-family: 'Trebuchet MS';
-  margin-bottom: 1.15em;
+  border: 0.01em solid rgba(105, 90, 205, 0.447);
+  border-radius: 0.2em;
+  background-color: aliceblue;
+  margin-block: 1em;
+  padding: 0.85em;
 }
 @keyframes blink-fade {
   to {
