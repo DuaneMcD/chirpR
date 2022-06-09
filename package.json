@@ -15,7 +15,8 @@
     "next": "12.1.6",
     "puppeteer": "^14.0.0",
     "react": "18.1.x",
-    "react-dom": "18.1.x"
+    "react-dom": "18.1.x",
+    "typescript": "^4.7.3"
   },
   "devDependencies": {
     "eslint": "8.15.0",
