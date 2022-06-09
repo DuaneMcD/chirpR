@@ -4,8 +4,11 @@
   "description": "Scrape and display tweets from twitter",
   "engines": {
     "node": "17.x",
-    "npm": "8.5.x"
+    "npm": "8.x"
   },
+  "cacheDirectories": [
+    ".next/cache"
+  ],
   "private": true,
   "scripts": {
     "dev": "next dev",
