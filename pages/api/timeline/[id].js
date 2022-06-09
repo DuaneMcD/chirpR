@@ -1,5 +1,3 @@
-import apiConfig from '../../../components/apiConfig';
-
 export default async function timeline(req, res) {
   const config = {
     headers: {

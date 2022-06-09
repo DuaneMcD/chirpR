@@ -1,6 +1,5 @@
 import Head from 'next/head';
 import Link from 'next/dist/client/link';
-import Sidebar from '../components/Sidebar';
 
 export default function Index() {
   return (
