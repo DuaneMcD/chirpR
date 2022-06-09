@@ -3,7 +3,8 @@
   "version": "2.0.0",
   "description": "Scrape and display tweets from twitter",
   "engines": {
-    "node": "17.x"
+    "node": "17.x",
+    "npm": "8.5.x"
   },
   "private": true,
   "scripts": {
