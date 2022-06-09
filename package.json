@@ -23,6 +23,7 @@
     "puppeteer": "^14.0.0",
     "react": "18.1.x",
     "react-dom": "18.1.x",
+    "sharp": "^0.30.6",
     "typescript": "^4.7.3"
   },
   "devDependencies": {
