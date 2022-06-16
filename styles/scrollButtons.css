@@ -1,0 +1,45 @@
+.moreUsers,
+.scrollButtons > button,
+.scrollButtons {
+  font-family: 'Trebuchet MS';
+  color: ghostwhite;
+  font-size: 2.25vw;
+  border: none;
+  background-color: transparent;
+  animation: blink-fade 2s ease-out 5s 6 alternate;
+}
+
+.scrollButtons > button {
+  font-size: 1.35em;
+}
+.scrollButtons > button:hover {
+  color: rgb(0, 181, 252);
+}
+
+.moreUsers > p {
+  text-align: center;
+  margin-bottom: 0;
+}
+.scrollButtons {
+  display: block;
+  margin-inline: 0.85em;
+}
+
+button.scrollLeft,
+button.scrollRight {
+  cursor: pointer;
+}
+
+.moreUsers,
+.loading-mini {
+  position: absolute;
+  top: 9vh;
+  right: 2vw;
+  z-index: 5;
+}
+
+@keyframes blink-fade {
+  to {
+    opacity: 1;
+  }
+}

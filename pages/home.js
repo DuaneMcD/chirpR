@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import Accordion from '../components/Accordion';
+import ScrollButtons from '../components/ScrollButtons';
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
@@ -80,30 +81,33 @@ const Home = () => {
     }
   }, [tweetsArray]);
 
-  const scrollHomeTweets = () => {
-    scrollRef.scrollRight(100);
+  const scrollHomeTweets = direction => {
+    switch (direction) {
+      case 'left':
+        scrollRef.current.scrollLeft += scrollRef.current.scrollWidth / 16;
+        break;
+      case 'right':
+        scrollRef.current.scrollLeft -= scrollRef.current.scrollWidth / 16;
+        break;
+    }
   };
 
   return (
     <>
-      <div className='homePage'>
+      <div className='homePage' ref={scrollRef}>
         <div className='topbar'>
           <h1 className='popular-streams'>Explore Trending Twitter Feeds </h1>
         </div>
         {loading ? (
           <p className='loading-mini'>Loading...</p>
         ) : (
-          <button className='moreUsers' onClick={scrollHomeTweets}>
-            more users ➡
-          </button>
+          <ScrollButtons onClick={scrollHomeTweets} />
         )}
-
-        <div className='homeContainer' ref={scrollRef}>
+        <div className='homeContainer'>
           {loading ? (
             <div className='loading'>LOADING TWEETS...</div>
           ) : (
             Object.entries(tweetsArray).map(user => {
-              // console.log(user);
               return (
                 <Accordion
                   key={Object.values(user[1][2])}

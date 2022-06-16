@@ -30,7 +30,6 @@ const Accordion = props => {
             placeholder='empty'
             width={75}
             height={75}
-            style={{ padding: '.2em' }}
             quality={100}
             className='userAvatar'
           />
