@@ -1,0 +1,25 @@
+body {
+  background: rgb(0, 32, 50);
+  margin: 0;
+}
+* {
+  scrollbar-width: none;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+.searchPage,
+.homePage,
+.aboutPage {
+  display: flex;
+  flex-direction: column;
+  margin: 15vh auto 0 auto;
+  overflow-x: scroll;
+}
