@@ -84,10 +84,10 @@ const Home = () => {
   const scrollHomeTweets = direction => {
     switch (direction) {
       case 'left':
-        scrollRef.current.scrollLeft += scrollRef.current.scrollWidth / 16;
+        scrollRef.current.scrollLeft -= scrollRef.current.scrollWidth / 16;
         break;
       case 'right':
-        scrollRef.current.scrollLeft -= scrollRef.current.scrollWidth / 16;
+        scrollRef.current.scrollLeft += scrollRef.current.scrollWidth / 16;
         break;
     }
   };
@@ -101,7 +101,7 @@ const Home = () => {
         {loading ? (
           <p className='loading-mini'>Loading...</p>
         ) : (
-          <ScrollButtons onClick={scrollHomeTweets} />
+          <ScrollButtons scrollHomeTweets={scrollHomeTweets} />
         )}
         <div className='homeContainer'>
           {loading ? (

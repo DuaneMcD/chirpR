@@ -1,7 +1,6 @@
 .homepage {
   position: relative;
-  scroll-behavior: auto;
-  scroll-snap-type: mandatory;
+  scroll-behavior: smooth;
 }
 .popular-streams {
   position: relative;

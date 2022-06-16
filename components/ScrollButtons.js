@@ -1,11 +1,13 @@
-function ScrollButtons(props) {
+function ScrollButtons({ scrollHomeTweets }) {
   return (
     <div className='moreUsers'>
       <div className='scrollButtons'>
-        <button className='scrollLeft' onClick={props.onClick('left')}>
+        <button className='scrollLeft' onClick={() => scrollHomeTweets('left')}>
           ⬅
         </button>
-        <button className='scrollRight' onClick={props.onClick('right')}>
+        <button
+          className='scrollRight'
+          onClick={() => scrollHomeTweets('right')}>
           ➡
         </button>
       </div>
