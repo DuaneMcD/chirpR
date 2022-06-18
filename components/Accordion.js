@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { CaretDownFilled } from '@ant-design/icons';
 import Image from 'next/dist/client/image';
 
@@ -6,6 +6,9 @@ const Accordion = props => {
   const [active, setActive] = useState(true);
   const [display, setDisplay] = useState('inherit');
   const [caret, setCaret] = useState('caret-rotate');
+  const [scrollStart, setScrollStart] = useState();
+  const [dragtoScroll, setDragtoScroll] = useState(false);
+  const tweetScrollRef = useRef();
 
   const toggleAccordion = () => {
     setActive(!active);
@@ -16,6 +19,12 @@ const Accordion = props => {
   const handleTimeStamp = dateString => {
     let timestamp = new Date(dateString);
     return timestamp.toDateString();
+  };
+  const dragScroll = e => {
+    // if (dragtoScroll == true) {
+    tweetScrollRef.current.scrollTop =
+      tweetScrollRef.current.scrollTop + (scrollStart + e.target.clientY);
+    // }
   };
 
   return (
@@ -38,7 +47,18 @@ const Accordion = props => {
             <CaretDownFilled className={caret} />
           </div>
         </button>
-        <div style={{ display: `${display}` }} className='accordion-content'>
+        <div
+          style={{ display: `${display}` }}
+          className='accordion-content'
+          ref={tweetScrollRef}
+          onDrag={e => dragScroll(e)}
+          onMouseDown={e => {
+            setScrollStart(e.clientY), setDragtoScroll(true);
+          }}
+          onMouseUp={() => {
+            setDragtoScroll(false);
+            setScrollStart(null);
+          }}>
           {props.userStream?.map(tweet => (
             <div className='single-tweet' key={tweet.id}>
               <p className='time-stamp'>{`${handleTimeStamp(

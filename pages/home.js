@@ -6,7 +6,7 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
   const [mostFollowedUsers, setMostFollowedUsers] = useState([]);
   const [tweetsArray, setTweetsArray] = useState([]);
-  const scrollRef = useRef();
+  const usersScrollRef = useRef();
 
   const removeUsers = user => {
     // inactive accounts cause undefined errors
@@ -84,17 +84,21 @@ const Home = () => {
   const scrollHomeTweets = direction => {
     switch (direction) {
       case 'left':
-        scrollRef.current.scrollLeft -= scrollRef.current.scrollWidth / 16;
+        usersScrollRef.current.scrollLeft -=
+          usersScrollRef.current.scrollWidth / 16;
         break;
       case 'right':
-        scrollRef.current.scrollLeft += scrollRef.current.scrollWidth / 16;
+        usersScrollRef.current.scrollLeft +=
+          usersScrollRef.current.scrollWidth / 16;
         break;
+      // default:
+      //   usersScrollRef.current.scrollLeft += direction;
     }
   };
 
   return (
     <>
-      <div className='homePage' ref={scrollRef}>
+      <div className='homePage'>
         <div className='topbar'>
           <h1 className='popular-streams'>Explore Trending Twitter Feeds </h1>
         </div>
@@ -103,7 +107,7 @@ const Home = () => {
         ) : (
           <ScrollButtons scrollHomeTweets={scrollHomeTweets} />
         )}
-        <div className='homeContainer'>
+        <div className='homeContainer' ref={usersScrollRef}>
           {loading ? (
             <div className='loading'>LOADING TWEETS...</div>
           ) : (
@@ -114,6 +118,7 @@ const Home = () => {
                   title={`@${Object.values(user[1][0])}`}
                   imageSRC={Object.values(user[1][1])[0]}
                   userStream={Object.values(user[1][4])[0]}
+                  scrollHomeTweets={scrollHomeTweets}
                 />
               );
             })

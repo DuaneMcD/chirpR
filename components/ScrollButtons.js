@@ -7,7 +7,9 @@ function ScrollButtons({ scrollHomeTweets }) {
         </button>
         <button
           className='scrollRight'
-          onClick={() => scrollHomeTweets('right')}>
+          onClick={() => {
+            scrollHomeTweets('right'), console.log('right');
+          }}>
           ➡
         </button>
       </div>

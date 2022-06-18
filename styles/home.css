@@ -1,6 +1,10 @@
+html {
+  scroll-behavior: smooth;
+}
+
 .homepage {
   position: relative;
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
 }
 .popular-streams {
   position: relative;
@@ -11,9 +15,11 @@
 .homeContainer {
   display: flex;
   flex-direction: row;
-  margin: 0.85em 8vw 0 20vw;
+  margin: 0.75em 1.5vw 0 19vw;
   gap: 1.25em;
-  scroll-behavior: auto;
+  max-height: 80vh;
+  overflow-y: hidden;
+  padding: 1em;
 }
 
 .loading-mini,
@@ -82,6 +88,12 @@
   padding: 8px;
   height: 70vh;
   overflow: auto;
+  cursor: grab;
+  padding-bottom: 5em;
+}
+
+.accordion-content:-moz-drag-over {
+  cursor: grabbing;
 }
 
 .single-tweet {
