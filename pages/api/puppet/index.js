@@ -24,5 +24,5 @@ export default async function scrapeWiki(req, res) {
 
   res.json(twitterHandles);
 
-  return <p>{twitterHandles}</p>;
+  return twitterHandles;
 }
